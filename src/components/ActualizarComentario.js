@@ -70,13 +70,8 @@ class ActualizarComentario extends React.Component {
                                     case "true":
                                     return (
                                             <div className="table_watch">
-<<<<<<< HEAD
-                                                <label htmlFor="comentario" >Actualizar Comentario</label>
-                                                <textarea type="text" name="comentario" className="table_watch_text" placeholder="Ingrese un mensaje informativo" ref={this.comentarioRef} onChange={this.changeState}/>
-=======
                                                 <label htmlFor="comentario">Actualizar Comentario</label>
                                                 <textarea className="table_watch_text" name="comentario" placeholder="Ingrese un mensaje informativo" ref={this.comentarioRef} onChange={this.changeState}/>
->>>>>>> e79788e5d5255e2fc0d1fbf49df664ed917a4a0a
                                                 {(() => {
                                                 switch(this.state.statusComentario){   
                                                     case "false":
@@ -89,10 +84,6 @@ class ActualizarComentario extends React.Component {
                                                 }
                                                 })()}
                                                 <button className="btn_join" onClick={this.cambiarComentario}>Actualizar</button>
-<<<<<<< HEAD
-                                                
-=======
->>>>>>> e79788e5d5255e2fc0d1fbf49df664ed917a4a0a
                                                 <button id="btn_delete" onClick={this.cancelComentario}>Cancelar</button>
                                                 </div>
                                                     );
