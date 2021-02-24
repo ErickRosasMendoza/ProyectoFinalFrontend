@@ -5,14 +5,38 @@ import Global from '../Global';
 
 class AlumnoBaja extends React.Component{
 
+    estadoRef = React.createRef();
+
     url = Global.url;
 
     state = {
         idAlumno: this.props.id,
         tipoBaja: {},
         alumno: {},
+        cambioEstado: {},
         statusTipoBaja: null,
+        statusEstado: null,
     };
+
+    changeState = () =>{
+        this.setState({
+            cambioEstado:{
+                idAlumno:this.props.id,
+                idSolicitud: this.state.tipoBaja.idSolicitud,
+                tipoDeBaja: this.state.tipoBaja.tipoDeBaja,
+                horas: this.state.tipoBaja.horas,
+                semestre: this.state.tipoBaja.semestre,
+                egresado: this.state.tipoBaja.egresado,
+                registroSS: this.state.tipoBaja.registroSS,
+                prestatario: this.state.tipoBaja.prestatario,
+                programaSS: this.state.tipoBaja.programaSS,
+                fechaInicio: this.state.tipoBaja.fechaInicio,
+                fechaTermino: this.state.tipoBaja.fechaTermino,
+                estado: this.estadoRef.current.value
+            }
+        })
+    }//Fin de ChangeState
+
       componentWillMount() {
            this.getAlumno();
            this.getTipoBaja();
@@ -36,6 +60,26 @@ class AlumnoBaja extends React.Component{
         } );   
     }//Fin de getTipoBaja()
     
+    estado = () => {
+        this.setState({
+            statusEstado: "true"
+        });
+    }//Fin de estado
+
+    cancelEstado = () => {
+        this.setState({
+            statusEstado: "false"
+        });
+    }//Fin de estado
+
+    cambiarEstado = () => {
+        this.changeState();
+        axios.patch(this.url+"solicitudBaja/update", this.state.cambioEstado)
+        .then(res =>{
+            this.getTipoBaja();
+        });
+    }//Fin de Cambiar Estado
+
     render(){
         if(this.state.statusTipoBaja == 'success'){
         return(
@@ -84,19 +128,42 @@ class AlumnoBaja extends React.Component{
                     </tr>
                 </tbody>
                 <div id="sidebar" className="archivosAdminRight">
-                    <div className="text_login">
+                    <div>
+                        <button className="btn_join" onClick={this.estado}>Cambiar Estado</button>
+                        {(() => {  
+                                    switch (this.state.statusEstado){
+                                    case "true":
+                                    return (
+                                            <div className="table_watch">
+                                                <label htmlFor="estado">Actualizar Estado</label>
+                                                <select name="estado" ref={this.estadoRef} onChange={this.changeState}>
+                                                    <option value="NUEVO">NUEVO</option>
+                                                    <option value="PROCESANDO">EN PROCESO</option>
+                                                    <option value="FINALIZADO">FINALIZADO</option>
+                                                    <option value="RECHAZADO">RECHAZADO</option>
+                                                    </select>
+                                                <button className="btn_join" onClick={this.cambiarEstado}>Actualizar</button>
+                                                <button id="btn_delete" onClick={this.cancelEstado}>Cancelar</button>
+                                                </div>
+                                                    );
+                                                break;
+                                                default: break;
+                                                }
+                                            })()}
+                    </div>
+                    <div>
                         <strong>Tipo de Baja:</strong> {this.state.tipoBaja.tipoDeBaja}
                     </div>
-                    <div className="text_login">
+                    <div>
                         <strong>Programa de Servicio Social:</strong> {this.state.tipoBaja.programaSS}
                     </div>
-                    <div className="text_login">
+                    <div>
                         <strong>Prestatario:</strong> {this.state.tipoBaja.prestatario}
                     </div>
-                    <div className="text_login">
+                    <div>
                         <strong>Fecha de Inicio:</strong> {this.state.tipoBaja.fechaInicio}
                     </div>
-                    <div className="text_login">
+                    <div>
                         <strong>Fehcta de Término:</strong> {this.state.tipoBaja.fechaTermino}
                     </div>
                 </div>
