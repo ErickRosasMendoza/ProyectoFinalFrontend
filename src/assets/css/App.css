@@ -281,19 +281,19 @@ div {
 #sidebar.dictamenLeft{
   min-height: 160px;
   height: auto;
-  margin-left: 15px;
-  max-width: 40%;
+  margin-left: 10px;
+  width: 400px;
 }
 #sidebar.dictamenRight{
   float: right;
   margin-top: -192px;
-  margin-right: 5px;
+  margin-right: 8px;
   min-height: 220px;
   height: auto;
-  max-width: 40%;
+ width: 600px;
 }
 #sidebar.dictamenCenter{
-  margin-left: 528px;
+  margin-left: 420px;
   margin-top: -193px;
   min-height: 190px;
   height: auto;

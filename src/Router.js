@@ -43,6 +43,10 @@ import AlumnoServicio from './components/AlumnoServicio';
 import HeaderDEyAE from './components/HeaderDEyAE';
 import DirectorioArchivosAlumno from './components/DirectorioArchivosAlumno';
 import BuscarBoleta from './components/BuscarBoleta';
+import BuscarDictamenAlumnos from './components/BuscarDictamenAlumnos';
+import BuscarBajaAlumnos from './components/BuscarBajaAlumnos';
+import BuscarLiberacionAlumnos from './components/BuscarLiberacionAlumnos';
+import BuscarServicioAlumnos from './components/BuscarServicioAlumnos';
 
  
 class Router extends React.Component {
@@ -67,10 +71,10 @@ class Router extends React.Component {
                     <Route exact path = "/BuscarICA" component = {BuscarICA}/>
                     <Route exact path = "/BuscarIE" component = {BuscarIE}/>
                     <Route exact path = '/BuscarISISA' component = {BuscarISISA}/>
-                    <Route exact path = "/AlumnoDetalle/:id" component = {AlumnoDetalle}/>
-                    
-                    <Route exact path = "/AlumnoBaja/:id" component = {AlumnoBaja}/>
-                    <Route exact path = "/AlumnoLiberacion/:id" component = {AlumnoLiberacion}/>
+                    <Route exact path = "/BuscarDictamen" component = {BuscarDictamenAlumnos}/>
+                    <Route exact path = "/BuscarBaja" component = {BuscarBajaAlumnos}/>
+                    <Route exact path = "/BuscarLiberacion" component = {BuscarLiberacionAlumnos}/>
+                    <Route exact path = "/BuscarServicio" component = {BuscarServicioAlumnos}/>
                     <Route exact path = "/AlumnoServicio/:id" component = {AlumnoServicio}/>
                     <Route exact path = "/DocDictamen/:doc" component = {DocDictamen}/>
                     <Route exact path = "/DocLiberacion/:doc" component = {DocLiberacion}/>
