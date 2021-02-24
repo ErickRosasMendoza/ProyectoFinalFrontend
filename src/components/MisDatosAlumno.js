@@ -77,8 +77,8 @@ class MisDatosAlumno extends React.Component{
                             <td className="table_lista">{this.state.alumno.boleta}</td>
                             <td className="table_lista">{this.state.alumno.programaAcademico}</td>
                             <td className="table_lista">{this.state.email}</td>
-                            <td><button  className = "btn" onClick={this.updateDatos} >Actualizar Información Personal</button></td>
-                            <td><button  className = "btn" onClick={this.updateEmail} >Actualizar Email ó Contraseña</button></td>
+                            <td><button  className = "btn datosAlumnos"  onClick={this.updateDatos} >Actualizar Información Personal</button></td>
+                            <td><button  className = "btn datosAlumnos" onClick={this.updateEmail} >Actualizar Email ó Contraseña</button></td>
                         </tr>
                         </tbody>
                         {(() => {  

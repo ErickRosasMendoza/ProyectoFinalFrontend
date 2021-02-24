@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import Global from '../Global';
 import Slider from './Slider';
-import HeaderDEyAE from './HeaderDEyAE';
 import md5 from 'md5';
 
 
@@ -84,9 +83,10 @@ class IniciarSesion extends React.Component {
                                          console.log(this.state.form.email + "datos dentro del form")
                                          console.log(this.state.usuario.email + "datos dentro de usuario")
                                          
-                                        return response.data;
+                                           return response.data;
                                         
                                          })
+                               
 
                            .then(response => {
                            if (this.state.usuario.tipoUsuario == false) {
@@ -218,6 +218,4 @@ class IniciarSesion extends React.Component {
      }
         
 }
-
-
 export default IniciarSesion;
