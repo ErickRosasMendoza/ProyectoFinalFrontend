@@ -7,12 +7,29 @@ class AlumnoServicio extends React.Component{
 
     url = Global.url;
 
+    estadoRef = React.createRef();
+
     state = {
         idAlumno: this.props.id,
         servicio: {},
         alumno: {},
         statusServicio: null,
+        cambioEstado: {},
+        statusEstado: null,
     };
+
+    changeState = () =>{
+        this.setState({
+            cambioEstado:{
+                idAlumno:this.props.id,
+                idServicio: this.state.servicio.idServicio,
+                semestre: this.state.servicio.semestre,
+                responsableDirecto: this.state.servicio.responsableDirecto,
+                estado: this.estadoRef.current.value
+            }
+        })
+    }//Fin de ChangeState
+
      componentWillMount=()=> {
             this.getServicio();
             this.getAlumno();            
@@ -37,6 +54,26 @@ class AlumnoServicio extends React.Component{
         });
         } );   
     }//Fin de getservicio()
+
+    estado = () => {
+        this.setState({
+            statusEstado: "true"
+        });
+    }//Fin de estado
+
+    cancelEstado = () => {
+        this.setState({
+            statusEstado: "false"
+        });
+    }//Fin de estado
+
+    cambiarEstado = () => {
+        this.changeState();
+        axios.patch(this.url+"servicioSocial/update", this.state.cambioEstado)
+        .then(res =>{
+            this.getServicio();
+        });
+    }//Fin de Cambiar Estado
     
     render(){
         if(this.state.statusServicio == 'success'){
@@ -85,6 +122,31 @@ class AlumnoServicio extends React.Component{
                                 })()}</td>
                     </tr>
                 </tbody>
+                <div id="sidebar" className="archivosAdminRight">
+                    <div>
+                        <button className="btn_join" onClick={this.estado}>Cambiar Estado</button>
+                        {(() => {  
+                                    switch (this.state.statusEstado){
+                                    case "true":
+                                    return (
+                                            <div className="table_watch">
+                                                <label htmlFor="estado">Actualizar Estado</label>
+                                                <select name="estado" ref={this.estadoRef} onChange={this.changeState}>
+                                                    <option value="NUEVO">NUEVO</option>
+                                                    <option value="PROCESANDO">EN PROCESO</option>
+                                                    <option value="FINALIZADO">FINALIZADO</option>
+                                                    <option value="RECHAZADO">RECHAZADO</option>
+                                                    </select>
+                                                <button className="btn_join" onClick={this.cambiarEstado}>Actualizar</button>
+                                                <button id="btn_delete" onClick={this.cancelEstado}>Cancelar</button>
+                                                </div>
+                                                    );
+                                                break;
+                                                default: break;
+                                                }
+                                            })()}
+                    </div>
+                </div>
             </div>
         );
     }else if(this.state.statusServicio != 'success'){

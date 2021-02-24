@@ -60,28 +60,28 @@ class VerDatosLiberacion extends React.Component{
                                     break;
                                 }
                                 })()}
-                                <div className="text_login">
+                                <div>
                                    <strong>Registro de Servicio Social:</strong> {this.state.liberacionExtemporanea.registroSS}
                                 </div>
-                                <div className="text_login">
+                                <div>
                                     <strong>Programa de ServicioSocial:</strong> {this.state.liberacionExtemporanea.programaSS}
                                 </div>
-                                <div className="text_login">
+                                <div >
                                     <strong>Prestatario:</strong> {this.state.liberacionExtemporanea.prestatario}
                                 </div>
-                                <div className="text_login">
+                                <div>
                                     <strong>Número Telefónico:</strong> {this.state.liberacionExtemporanea.telefono}
                                 </div>
-                                <div className="text_login">
+                                <div>
                                     <strong>Fecha de Inicio:</strong> {this.state.liberacionExtemporanea.fechaInicio}
                                 </div>
-                                <div className="text_login">
+                                <div>
                                     <strong>Fecha de Término:</strong> {this.state.liberacionExtemporanea.fechaTermino}
                                 </div>
-                                <div className="text_login">
+                                <div>
                                     <strong>Egresado:</strong> No, No soy EGRESADO
                                 </div>
-                                <div className="text_login">
+                                <div>
                                     <strong>Semestre:</strong> {this.state.liberacionExtemporanea.semestre}
                                 </div>
                                 <br/>
@@ -127,25 +127,25 @@ class VerDatosLiberacion extends React.Component{
                                     break;
                                 }
                                 })()}
-                                <div className="text_login">
+                                <div>
                                 <strong>Registro de Servicio Social:</strong> {this.state.liberacionExtemporanea.registroSS}
                                 </div>
-                                <div className="text_login">
+                                <div>
                                 <strong>Programa de ServicioSocial:</strong> {this.state.liberacionExtemporanea.programaSS}
                                 </div>
-                                <div className="text_login">
+                                <div>
                                 <strong>Prestatario:</strong> {this.state.liberacionExtemporanea.prestatario}
                                 </div>
-                                <div className="text_login">
+                                <div>
                                 <strong>Número Telefónico:</strong> {this.state.liberacionExtemporanea.telefono}
                                 </div>
-                                <div className="text_login">
+                                <div>
                                 <strong>Fecha de Inicio:</strong> {this.state.liberacionExtemporanea.fechaInicio}
                                 </div>
-                                <div className="text_login">
+                                <div>
                                 <strong>Fecha de Término:</strong> {this.state.liberacionExtemporanea.fechaTermino}
                                 </div>
-                                <div className="text_login">
+                                <div>
                                 <strong>Egresado:</strong> Sí, Sí soy EGRESADO
                                 </div>
                                 <br/>

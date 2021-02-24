@@ -7,15 +7,38 @@ class AlumnoLiberacion extends React.Component{
 
     url = Global.url;
 
+    estadoRef = React.createRef();
+
     state = {
         idAlumno: this.props.id,
         liberacion: {},
         alumno: {},
         statusLiberacion: null,
+        cambioEstado: {},
+        statusEstado: null,
     };
+
+    changeState = () =>{
+        this.setState({
+            cambioEstado:{
+                idAlumno:this.props.id,
+                idLiberacion: this.state.liberacion.idLiberacion,
+                telefono: this.state.liberacion.telefono,
+                semestre: this.state.liberacion.semestre,
+                egresado: this.state.liberacion.egresado,
+                registroSS: this.state.liberacion.registroSS,
+                prestatario: this.state.liberacion.prestatario,
+                programaSS: this.state.liberacion.programaSS,
+                fechaInicio: this.state.liberacion.fechaInicio,
+                fechaTermino: this.state.liberacion.fechaTermino,
+                estado: this.estadoRef.current.value
+            }
+        })
+    }//Fin de ChangeState
+
         componentWillMount() {
             this.getAlumno();
-            this.getliberacion();
+            this.getLiberacion();
         }
 
         getAlumno = () => {
@@ -28,7 +51,7 @@ class AlumnoLiberacion extends React.Component{
             } );   
         }//Fin de getAlumno()
     
-    getliberacion = () => {
+    getLiberacion = () => {
         axios.get(this.url +"liberacionExtemporanea/findIdAlumno/"+ this.props.id)
         .then(response => {
         this.setState({
@@ -37,6 +60,26 @@ class AlumnoLiberacion extends React.Component{
         });
         } );   
     }//Fin de getLiberacion()
+
+    estado = () => {
+        this.setState({
+            statusEstado: "true"
+        });
+    }//Fin de estado
+
+    cancelEstado = () => {
+        this.setState({
+            statusEstado: "false"
+        });
+    }//Fin de estado
+
+    cambiarEstado = () => {
+        this.changeState();
+        axios.patch(this.url+"liberacionExtemporanea/update", this.state.cambioEstado)
+        .then(res =>{
+            this.getLiberacion();
+        });
+    }//Fin de Cambiar Estado
     
     render(){
         if(this.state.statusLiberacion == 'success'){
@@ -86,19 +129,42 @@ class AlumnoLiberacion extends React.Component{
                     </tr>
                 </tbody>
                 <div id="sidebar" className="archivosAdminRight">
-                    <div className="text_login">
+                    <div>
+                        <button className="btn_join" onClick={this.estado}>Cambiar Estado</button>
+                        {(() => {  
+                                    switch (this.state.statusEstado){
+                                    case "true":
+                                    return (
+                                            <div className="table_watch">
+                                                <label htmlFor="estado">Actualizar Estado</label>
+                                                <select name="estado" ref={this.estadoRef} onChange={this.changeState}>
+                                                    <option value="NUEVO">NUEVO</option>
+                                                    <option value="PROCESANDO">EN PROCESO</option>
+                                                    <option value="FINALIZADO">FINALIZADO</option>
+                                                    <option value="RECHAZADO">RECHAZADO</option>
+                                                    </select>
+                                                <button className="btn_join" onClick={this.cambiarEstado}>Actualizar</button>
+                                                <button id="btn_delete" onClick={this.cancelEstado}>Cancelar</button>
+                                                </div>
+                                                    );
+                                                break;
+                                                default: break;
+                                                }
+                                            })()}
+                    </div>
+                    <div>
                         <strong>Programa de Servicio Social:</strong> {this.state.liberacion.programaSS}
                     </div>
-                    <div className="text_login">
+                    <div>
                         <strong>Prestatario:</strong> {this.state.liberacion.prestatario}
                     </div>
-                    <div className="text_login">
+                    <div>
                         <strong>Fecha de Inicio:</strong> {this.state.liberacion.fechaInicio}
                     </div>
-                    <div className="text_login">
+                    <div>
                         <strong>Fecha de Término:</strong> {this.state.liberacion.fechaTermino}
                     </div>
-                    <div className="text_login">
+                    <div>
                         <strong>Número Telefónico:</strong> {this.state.liberacion.telefono}
                     </div>
                 </div>

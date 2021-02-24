@@ -59,10 +59,10 @@ class VerDatosDictamen extends React.Component{
                             break;
                         }
                         })()}
-                            <div className="text_login">
+                            <div>
                                 <strong>Procentaje de creditos:</strong> {this.state.dictamen.porcentajeCreditos}%
                             </div>
-                            <div className="text_login">
+                            <div>
                                 <strong>Semestre:</strong> {this.state.dictamen.semestre}
                             </div>
                             <br/>

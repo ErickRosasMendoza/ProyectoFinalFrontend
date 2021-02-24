@@ -281,19 +281,19 @@ div {
 #sidebar.dictamenLeft{
   min-height: 160px;
   height: auto;
-  margin-left: 15px;
-  max-width: 40%;
+  margin-left: 10px;
+  width: 400px;
 }
 #sidebar.dictamenRight{
   float: right;
   margin-top: -192px;
-  margin-right: 5px;
+  margin-right: 8px;
   min-height: 220px;
   height: auto;
-  max-width: 40%;
+ width: 600px;
 }
 #sidebar.dictamenCenter{
-  margin-left: 528px;
+  margin-left: 420px;
   margin-top: -193px;
   min-height: 190px;
   height: auto;
@@ -334,13 +334,13 @@ div {
 #sidebar.liberacionRight{
   float: right;
   margin-top: -862px;
-  margin-right: 5px;
+  margin-right: 8px;
   min-height: 220px;
   height: auto;
-  max-width: 40%;
+  width: 575px;
 }
 #sidebar.liberacionCenter{
-  margin-left: 518px;
+  margin-left: 430px;
   margin-top: -862px;
   min-height: 180px;
   height: auto;
@@ -355,14 +355,14 @@ div {
 #sidebar.bajaRight{
   float: right;
   margin-top: -932px;
-  margin-right: 5px;
+  margin-right: 8px;
   min-height: 220px;
   height: auto;
-  max-width: 40%;
+  width: 575px;
 }
 #sidebar.bajaCenter{
-  margin-left: 518px;
-  margin-top: -933px;
+  margin-left: 430px;
+  margin-top: -932px;
   min-height: 160px;
   height: auto;
   max-width: 24%;
@@ -376,14 +376,14 @@ div {
 #sidebar.servicioRight{
   float: right;
   margin-top: -282px;
-  margin-right: 5px;
+  margin-right: 8px;
   min-height: 220px;
   height: auto;
-  max-width: 40%;
+  width: 585px;
 }
 #sidebar.servicioCenter{
-  margin-left: 528px;
-  margin-top: -283px;
+  margin-left: 435px;
+  margin-top: -282px;
   min-height: 160px;
   height: auto;
   max-width: 24%;

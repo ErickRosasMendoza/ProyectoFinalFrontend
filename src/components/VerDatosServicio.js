@@ -61,10 +61,10 @@ class VerDatosServicio extends React.Component{
                                     break;
                                 }
                                 })()}
-                                <div className="text_login">
+                                <div >
                                     <strong>Responsable Directo:</strong> {this.state.servicio.responsableDirecto}
                                 </div>
-                                <div className="text_login">
+                                <div >
                                     <strong>Semestre:</strong> {this.state.servicio.semestre}
                                 </div>
                                 <br/>
@@ -81,10 +81,10 @@ class VerDatosServicio extends React.Component{
                 return(
                     <div className="center">
                             <div id="sidebar" className="servicioCenter">
-                                <div className="text_login">
+                                <div >
                                     <strong>Responsable Directo:</strong> {this.state.servicio.responsableDirecto}
                                 </div>
-                                <div className="text_login">
+                                <div >
                                     <strong>Soy Egresado</strong>
                                 </div>
                                 <br/>
@@ -102,7 +102,7 @@ class VerDatosServicio extends React.Component{
             return(
                 <div className="center">
                         <div id="sidebar" className="servicioCenter">
-                            <div className="text_login">
+                            <div >
                                 <strong>No tienes datos disponibles, registralos para empezar con tu documentación SERVICIO SOCIAL.</strong>
                             </div>
                         </div>          
