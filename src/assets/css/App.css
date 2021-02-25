@@ -316,14 +316,14 @@ div {
   margin-left: 265px;
   min-height: 350px;
   height: auto;
-  width: 78%;
+  width: 770px;
 }
 #sidebar.archivosAdminRight{
   float: right;
   margin-right: 5px;
   min-height: 70px;
   height: auto;
-  max-width: 40%;
+  max-width: 300px;
 }
 #sidebar.liberacionLeft{
   min-height: 830px;
