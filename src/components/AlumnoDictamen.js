@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Global from '../Global';
-import DirectorioAdmin from './DirectorioAdmin'
-import DirectorioArchivosAlumno from './DirectorioArchivosAlumno'
 
 class AlumnoDictamen extends React.Component{
 
@@ -87,9 +85,7 @@ class AlumnoDictamen extends React.Component{
                             <th className="table_lista">Alumno</th>
                             <th className="table_lista">Boleta</th>
                             <th className="table_lista">Programa Academico</th>
-                            <th className="table_lista">Semestre</th>
-                            <th className="table_lista">Prorcentaje Creditos</th>
-                            <th className="table_lista">Estado de la Solicitud</th>   
+                            <th className="table_lista">Estado de la Solicitud</th> 
                         </tr>
                     </tbody>
                     <tbody>
@@ -97,8 +93,6 @@ class AlumnoDictamen extends React.Component{
                             <td className="table_lista">{this.state.alumno.apellidoPaterno} {this.state.alumno.apellidoMaterno} {this.state.alumno.nombre}</td>
                             <td className="table_lista">{this.state.alumno.boleta}</td> 
                             <td className="table_lista">{this.state.alumno.programaAcademico}</td>
-                            <td className="table_lista">{this.state.dictamen.semestre}</td>
-                            <td className="table_lista">{this.state.dictamen.porcentajeCreditos}</td>
                             <td className="table_lista">{(() => {  
                                 switch (this.state.dictamen.estado){
                                 case "NUEVO":
@@ -123,33 +117,50 @@ class AlumnoDictamen extends React.Component{
                                     break;
                                 }
                                 })()}</td>
-                        </tr>
-                    </tbody>
-{/*                    <div id="sidebar" className="archivosAdminRight">
-                    <div>
-                        <button className="btn_join" onClick={this.estado}>Cambiar Estado</button>
-                        {(() => {  
+                                <td>
+                                <input type="checkbox" id="btn-modal"/>
+                                <label htmlFor="btn-modal" className="btn">MAS INFORMACIÓN</label>
+                                <div className="modal">
+                                <div className="contenedor">
+                                    <h1>Dictamen de 70%</h1>
+                                    <label htmlFor="btn-modal">X</label>
+                                    <div className="contenido">
+                                    <div>
+                                        <strong>Semestre:</strong> {this.state.dictamen.semestre}
+                                    </div>
+                                    <div>
+                                        <strong>Porcentaje de Creditos:</strong> {this.state.dictamen.porcentajeCreditos}%
+                                    </div>
+                                    <br/>
+                                    <button className="btn_join" onClick={this.estado}>Cambiar Estado</button>
+                                    <br/><br/>
+                                {(() => {  
                                     switch (this.state.statusEstado){
                                     case "true":
                                     return (
-                                            <div className="table_watch">
-                                                <label htmlFor="estado">Actualizar Estado</label>
+                                        <div className="center">
                                                 <select name="estado" ref={this.estadoRef} onChange={this.changeState}>
                                                     <option value="NUEVO">NUEVO</option>
                                                     <option value="PROCESANDO">EN PROCESO</option>
                                                     <option value="FINALIZADO">FINALIZADO</option>
                                                     <option value="RECHAZADO">RECHAZADO</option>
                                                     </select>
+                                                <br/><br/>
                                                 <button className="btn_join" onClick={this.cambiarEstado}>Actualizar</button>
                                                 <button id="btn_delete" onClick={this.cancelEstado}>Cancelar</button>
+                                                <br/>
                                                 </div>
                                                     );
                                                 break;
                                                 default: break;
                                                 }
                                             })()}
-                        </div>
-                    </div>*/} 
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
                 </div>
             );
         }else if(this.state.statusDictamen != 'success'){
@@ -160,8 +171,6 @@ class AlumnoDictamen extends React.Component{
                             <th className="table_lista">Alumno</th>
                             <th className="table_lista">Boleta</th>
                             <th className="table_lista">Programa Academico</th>
-                            <th className="table_lista">Semestre</th>
-                            <th className="table_lista">Prorcentaje Creditos</th> 
                             <th className="table_lista">Estado de la Solicitud</th> 
                         </tr>
                     </tbody>
@@ -170,8 +179,6 @@ class AlumnoDictamen extends React.Component{
                             <td className="table_lista">{this.state.alumno.apellidoPaterno} {this.state.alumno.apellidoMaterno} {this.state.alumno.nombre}</td>
                             <td className="table_lista">{this.state.alumno.boleta}</td> 
                             <td className="table_lista">{this.state.alumno.programaAcademico}</td>
-                            <td className="table_lista">SIN REGISTRO</td>
-                            <td className="table_lista">SIN REGISTRO</td>
                             <td className="table_lista">SIN REGISTRO</td>
                         </tr>
                     </tbody>
@@ -184,9 +191,7 @@ class AlumnoDictamen extends React.Component{
                         <tr >
                             <th className="table_lista">Alumno</th>
                             <th className="table_lista">Boleta</th>
-                            <th className="table_lista">Programa Academico</th>
-                            <th className="table_lista">Semestre</th>
-                            <th className="table_lista">Prorcentaje Creditos</th>  
+                            <th className="table_lista">Programa Academico</th> 
                             <th className="table_lista">Estado de la Solicitud</th>
                         </tr>
                     </tbody>
@@ -195,8 +200,6 @@ class AlumnoDictamen extends React.Component{
                             <td className="table_lista">{this.state.alumno.apellidoPaterno} {this.state.alumno.apellidoMaterno} {this.state.alumno.nombre}</td>
                             <td className="table_lista">{this.state.alumno.boleta}</td> 
                             <td className="table_lista">{this.state.alumno.programaAcademico}</td>
-                            <td className="table_lista">Cargando...</td>
-                            <td className="table_lista">Cargando...</td>
                             <td className="table_lista">Cargando...</td>
                         </tr>
                     </tbody>

@@ -60,13 +60,13 @@ class DirectorioArchivosAlumno extends Component{
             return(
               <div className = "center">
                         <DirectorioAdmin />
-
                         {(() => {  
                         switch (this.state.idTramite){
                         case 1:
                             return (
                                 <AlumnoDictamen
-                                id = {this.state.idAlumno}/>
+                                id = {this.state.idAlumno}
+                                />                                
                               );
                         break;
                         case 2:
@@ -110,8 +110,7 @@ class DirectorioArchivosAlumno extends Component{
                         </tr>
                      </tr>   
                 </tbody>
-               
-               
+
                 {(() => {  
                     switch (this.state.idTramite){
                         case 1:
