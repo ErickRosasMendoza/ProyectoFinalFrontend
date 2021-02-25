@@ -122,7 +122,7 @@ class AlumnoServicio extends React.Component{
                                 })()}</td>
                     </tr>
                 </tbody>
-                <div id="sidebar" className="archivosAdminRight">
+{/**                <div id="sidebar" className="archivosAdminRight">
                     <div>
                         <button className="btn_join" onClick={this.estado}>Cambiar Estado</button>
                         {(() => {  
@@ -146,7 +146,7 @@ class AlumnoServicio extends React.Component{
                                                 }
                                             })()}
                     </div>
-                </div>
+                </div> */} 
             </div>
         );
     }else if(this.state.statusServicio != 'success'){

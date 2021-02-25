@@ -125,7 +125,7 @@ class AlumnoDictamen extends React.Component{
                                 })()}</td>
                         </tr>
                     </tbody>
-                    <div id="sidebar" className="archivosAdminRight">
+{/*                    <div id="sidebar" className="archivosAdminRight">
                     <div>
                         <button className="btn_join" onClick={this.estado}>Cambiar Estado</button>
                         {(() => {  
@@ -149,7 +149,7 @@ class AlumnoDictamen extends React.Component{
                                                 }
                                             })()}
                         </div>
-                    </div>
+                    </div>*/} 
                 </div>
             );
         }else if(this.state.statusDictamen != 'success'){
@@ -175,37 +175,6 @@ class AlumnoDictamen extends React.Component{
                             <td className="table_lista">SIN REGISTRO</td>
                         </tr>
                     </tbody>
-                </div>
-            );
-        }else if(this.state.listar.length == 0 && this.state.statusDictamen != 'success'){
-            return(
-                <div className="center">
-                <DirectorioAdmin />
-                    <tbody>
-                        <tr >
-                            <th className="table_lista">Alumno</th>
-                            <th className="table_lista">Boleta</th>
-                            <th className="table_lista">Programa Academico</th>
-                            <th className="table_lista">Semestre</th>
-                            <th className="table_lista">Prorcentaje Creditos</th>  
-                        </tr>
-                    </tbody>
-                    <tbody>
-                        <tr>
-                            <td className="table_lista">{this.state.alumno.nombre} {this.state.alumno.apellidoPaterno} {this.state.alumno.apellidoMaterno}</td>
-                            <td className="table_lista">{this.state.alumno.boleta}</td> 
-                            <td className="table_lista">{this.state.alumno.programaAcademico}</td>
-                            <td className="table_lista">SIN REGISTRO</td>
-                            <td className="table_lista">SIN REGISTRO</td>
-                        </tr>
-                    </tbody>
-                    <br/>
-                    <DirectorioArchivosAlumno
-                    idAlumno={this.state.idAlumno}
-                    />
-                    <div id="sidebar" className="dictamenAdminCenter">
-                        Este alumno aun no tiene archivos registrados
-                    </div>
                 </div>
             );
         }else{

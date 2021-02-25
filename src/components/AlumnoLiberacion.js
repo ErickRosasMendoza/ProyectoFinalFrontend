@@ -128,7 +128,7 @@ class AlumnoLiberacion extends React.Component{
                                 })()}</td>
                     </tr>
                 </tbody>
-                <div id="sidebar" className="archivosAdminRight">
+{/*                <div id="sidebar" className="archivosAdminRight">
                     <div>
                         <button className="btn_join" onClick={this.estado}>Cambiar Estado</button>
                         {(() => {  
@@ -167,7 +167,7 @@ class AlumnoLiberacion extends React.Component{
                     <div>
                         <strong>Número Telefónico:</strong> {this.state.liberacion.telefono}
                     </div>
-                </div>
+                </div>*/} 
             </div>
         );
     }else if(this.state.statusLiberacion != 'success'){
@@ -193,10 +193,10 @@ class AlumnoLiberacion extends React.Component{
                         <td className="table_lista">SIN REGISTRO</td>
                     </tr>
                 </tbody>
-                <div id="sidebar" className="archivosAdminRight">
+{/*                 <div id="sidebar" className="archivosAdminRight">
                     <strong>Este alumno aun no tiene información registrada para este tramite.</strong>
-                </div>
-            </div>
+                </div>*/}
+            </div> 
         );   
     }else{
         return(
@@ -221,9 +221,9 @@ class AlumnoLiberacion extends React.Component{
                         <td className="table_lista">Cargando...</td>
                     </tr>
                 </tbody>
-                <div id="sidebar" className="archivosAdminRight">
+ {/*               <div id="sidebar" className="archivosAdminRight">
                     <strong>Cargando...</strong>
-                </div>
+                </div>*/}
             </div>
         );
     }
