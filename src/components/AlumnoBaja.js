@@ -89,8 +89,6 @@ class AlumnoBaja extends React.Component{
                         <th className="table_lista">Alumno</th>
                         <th className="table_lista">Boleta</th>
                         <th className="table_lista">Programa Academico</th>
-                        <th className="table_lista">Semestre</th>
-                        <th className="table_lista">Registro de Servicio Social</th>
                         <th className="table_lista">Estado de la Solicitud</th>
                     </tr>
                 </tbody>
@@ -99,8 +97,6 @@ class AlumnoBaja extends React.Component{
                         <td className="table_lista">{this.state.alumno.apellidoPaterno} {this.state.alumno.apellidoMaterno} {this.state.alumno.nombre}</td>
                         <td className="table_lista">{this.state.alumno.boleta}</td> 
                         <td className="table_lista">{this.state.alumno.programaAcademico}</td>
-                        <td className="table_lista">{this.state.tipoBaja.semestre}</td>
-                        <td className="table_lista">{this.state.tipoBaja.registroSS}</td>
                         <td className="table_lista">{(() => {  
                                 switch (this.state.tipoBaja.estado){
                                 case "NUEVO":
@@ -125,48 +121,68 @@ class AlumnoBaja extends React.Component{
                                     break;
                                 }
                                 })()}</td>
-                    </tr>
-                </tbody>
-{/*                <div id="sidebar" className="archivosAdminRight">
-                    <div>
-                        <button className="btn_join" onClick={this.estado}>Cambiar Estado</button>
-                        {(() => {  
+                                <td>
+                                <input type="checkbox" id="btn-modal"/>
+                                <label htmlFor="btn-modal" className="btn">MAS INFORMACIÓN</label>
+                                <div className="modal">
+                                <div className="contenedor">
+                                    <h1>Baja de Servicio Social</h1>
+                                    <label htmlFor="btn-modal">X</label>
+                                    <div className="contenido">
+                                    <div>
+                                        <strong>Semestre:</strong> {this.state.tipoBaja.semestre}
+                                    </div>
+                                    <div>
+                                        <strong>Registro de Servicio Social:</strong> {this.state.tipoBaja.registroSS}
+                                    </div>
+                                    <div>
+                                        <strong>Tipo de Baja:</strong> {this.state.tipoBaja.tipoDeBaja}
+                                    </div>
+                                    <div>
+                                        <strong>Horas:</strong> {this.state.tipoBaja.horas}
+                                    </div>
+                                    <div>
+                                        <strong>Programa de Servicio Social:</strong> {this.state.tipoBaja.programaSS}
+                                    </div>
+                                    <div>
+                                        <strong>Prestatario:</strong> {this.state.tipoBaja.prestatario}
+                                    </div>
+                                    <div>
+                                        <strong>Fecha de Inicio:</strong> {this.state.tipoBaja.fechaInicio}
+                                    </div>
+                                    <div>
+                                        <strong>Fehcta de Término:</strong> {this.state.tipoBaja.fechaTermino}
+                                    </div>
+                                    <br/>
+                                    <button className="btn_join" onClick={this.estado}>Cambiar Estado</button>
+                                    <br/><br/>
+                                {(() => {  
                                     switch (this.state.statusEstado){
                                     case "true":
                                     return (
-                                            <div className="table_watch">
-                                                <label htmlFor="estado">Actualizar Estado</label>
+                                        <div className="center">
                                                 <select name="estado" ref={this.estadoRef} onChange={this.changeState}>
                                                     <option value="NUEVO">NUEVO</option>
                                                     <option value="PROCESANDO">EN PROCESO</option>
                                                     <option value="FINALIZADO">FINALIZADO</option>
                                                     <option value="RECHAZADO">RECHAZADO</option>
                                                     </select>
+                                                <br/><br/>
                                                 <button className="btn_join" onClick={this.cambiarEstado}>Actualizar</button>
                                                 <button id="btn_delete" onClick={this.cancelEstado}>Cancelar</button>
+                                                <br/>
                                                 </div>
                                                     );
                                                 break;
                                                 default: break;
                                                 }
                                             })()}
-                    </div> 
-                    <div>
-                        <strong>Tipo de Baja:</strong> {this.state.tipoBaja.tipoDeBaja}
-                    </div>
-                    <div>
-                        <strong>Programa de Servicio Social:</strong> {this.state.tipoBaja.programaSS}
-                    </div>
-                    <div>
-                        <strong>Prestatario:</strong> {this.state.tipoBaja.prestatario}
-                    </div>
-                    <div>
-                        <strong>Fecha de Inicio:</strong> {this.state.tipoBaja.fechaInicio}
-                    </div>
-                    <div>
-                        <strong>Fehcta de Término:</strong> {this.state.tipoBaja.fechaTermino}
-                    </div>
-                </div>*/}
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                    </tr>
+                </tbody>
             </div>
         );
     }else if(this.state.statusTipoBaja != 'success'){
@@ -177,8 +193,6 @@ class AlumnoBaja extends React.Component{
                         <th className="table_lista">Alumno</th>
                         <th className="table_lista">Boleta</th>
                         <th className="table_lista">Programa Academico</th>
-                        <th className="table_lista">Semestre</th>
-                        <th className="table_lista">Registro de Servicio Social</th>
                         <th className="table_lista">Estado de la Solicitud</th>
                     </tr>
                 </tbody>
@@ -188,13 +202,8 @@ class AlumnoBaja extends React.Component{
                         <td className="table_lista">{this.state.alumno.boleta}</td> 
                         <td className="table_lista">{this.state.alumno.programaAcademico}</td>
                         <td className="table_lista">SIN REGISTRO</td>
-                        <td className="table_lista">SIN REGISTRO</td>
-                        <td className="table_lista">SIN REGISTRO</td>
                     </tr>
                 </tbody>
-{/*                <div id="sidebar" className="archivosAdminRight">
-                    <strong>Este alumno aun no tiene información registrada para este tramite.</strong>
-                </div>*/}
             </div>
         );
     }else{
@@ -205,8 +214,6 @@ class AlumnoBaja extends React.Component{
                         <th className="table_lista">Alumno</th>
                         <th className="table_lista">Boleta</th>
                         <th className="table_lista">Programa Academico</th>
-                        <th className="table_lista">Semestre</th>
-                        <th className="table_lista">Registro de Servicio Social</th>
                         <th className="table_lista">Estado de la Solicitud</th>
                     </tr>
                 </tbody>
@@ -216,13 +223,8 @@ class AlumnoBaja extends React.Component{
                         <td className="table_lista">{this.state.alumno.boleta}</td> 
                         <td className="table_lista">{this.state.alumno.programaAcademico}</td>
                         <td className="table_lista">Cargando...</td>
-                        <td className="table_lista">Cargando...</td>
-                        <td className="table_lista">Cargando...</td>
                     </tr>
                 </tbody>
-{/**                 <div id="sidebar" className="archivosAdminRight">
-                <strong>Cargando...</strong>
-            </div>*/}
             </div>
         );
     }
