@@ -56,6 +56,13 @@ class AlumnoDictamen extends React.Component{
         } );   
     }//Fin de getDictamen()
 
+    deleteDictamen = () => {
+        axios.delete(this.url+"dictamen/delete/"+this.props.id)
+        .then(res => {
+            window.location.href = "./" + this.props.id
+        })
+    }//Fin de deleteDictamen
+
     estado = () => {
         this.setState({
             statusEstado: "true"
@@ -155,6 +162,8 @@ class AlumnoDictamen extends React.Component{
                                                 default: break;
                                                 }
                                             })()}
+                                        <br/>
+                                        <button id="btn_deleteRegistro" onClick={this.deleteDictamen}>Borrar Registro</button>
                                         </div>
                                     </div>
                                 </div>

@@ -51,7 +51,7 @@ class ListaAlumnos extends Component{
     }*/
     
 render() {
-    if(this.state.alumnos.length >=0){
+    if(this.state.alumnos.length >=1){
         
         /*var listAlumnos = this.state.alumnos.map((alumno) =>{
             return(
@@ -94,16 +94,16 @@ render() {
     );
     }else if(this.state.alumnos.length == 0 && this.state.status == 'success'){
         return(
-            <div>
-                <h1>No hay Alumnos para mostrar</h1>
-                <p>An no hay contenido en esta seccion</p>
+            <div className="center">
+            <DirectorioAdmin />
+                <h1>No hay alumnos registrados para esta solicitud</h1>
             </div>
         );
     }else{
         return(
-            <div>
-                <h1>Cargando...</h1>
-                <p>Espere un momento</p>
+            <div className="center">
+            <DirectorioAdmin />
+                <h1>Cargando... Espere un momento...</h1>
             </div>
         );
     }

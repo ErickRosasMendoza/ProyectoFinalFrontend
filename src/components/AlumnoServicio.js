@@ -55,6 +55,13 @@ class AlumnoServicio extends React.Component{
         } );   
     }//Fin de getservicio()
 
+    deleteServicio = () => {
+        axios.delete(this.url+"servicioSocial/delete/"+this.props.id)
+        .then(res => {
+            window.location.href = "./" + this.props.id
+        })
+    }//Fin de deleteServicio
+
     estado = () => {
         this.setState({
             statusEstado: "true"
@@ -154,6 +161,8 @@ class AlumnoServicio extends React.Component{
                                                 default: break;
                                                 }
                                             })()}
+                                            <br/>
+                                            <button id="btn_deleteRegistro" onClick={this.deleteServicio}>Borrar Registro</button>
                                         </div>
                                     </div>
                                 </div>

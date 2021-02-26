@@ -59,6 +59,13 @@ class AlumnoBaja extends React.Component{
         });
         } );   
     }//Fin de getTipoBaja()
+
+    deleteTipoBaja = () => {
+        axios.delete(this.url+"solicitudBaja/delete/"+this.props.id)
+        .then(res => {
+            window.location.href = "./" + this.props.id
+        })
+    }//Fin de deleteTipoBaja
     
     estado = () => {
         this.setState({
@@ -177,6 +184,8 @@ class AlumnoBaja extends React.Component{
                                                 default: break;
                                                 }
                                             })()}
+                                            <br/>
+                                            <button id="btn_deleteRegistro" onClick={this.deleteTipoBaja}>Borrar Registro</button>
                                         </div>
                                     </div>
                                 </div>

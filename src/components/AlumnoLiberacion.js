@@ -61,6 +61,13 @@ class AlumnoLiberacion extends React.Component{
         } );   
     }//Fin de getLiberacion()
 
+    deleteLiberacion = () => {
+        axios.delete(this.url+"liberacionExtemporanea/delete/"+this.props.id)
+        .then(res => {
+            window.location.href = "./" + this.props.id
+        })
+    }//Fin de deleteLiberacion
+
     estado = () => {
         this.setState({
             statusEstado: "true"
@@ -90,7 +97,7 @@ class AlumnoLiberacion extends React.Component{
                         <th className="table_lista">Alumno</th>
                         <th className="table_lista">Boleta</th>
                         <th className="table_lista">Programa Academico</th>
-                        <td className="table_lista">Estado de la Solicitud</td>
+                        <th className="table_lista">Estado de la Solicitud</th>
                     </tr>
                 </tbody>
                 <tbody>
@@ -175,6 +182,8 @@ class AlumnoLiberacion extends React.Component{
                                                 default: break;
                                                 }
                                             })()}
+                                        <br/>
+                                        <button id="btn_deleteRegistro" onClick={this.deleteLiberacion}>Borrar Registro</button>
                                         </div>
                                     </div>
                                 </div>
@@ -191,7 +200,7 @@ class AlumnoLiberacion extends React.Component{
                         <th className="table_lista">Alumno</th>
                         <th className="table_lista">Boleta</th>
                         <th className="table_lista">Programa Academico</th>
-                        <td className="table_lista">Estado de la Solicitud</td>
+                        <th className="table_lista">Estado de la Solicitud</th>
                     </tr>
                 </tbody>
                 <tbody>
@@ -212,7 +221,7 @@ class AlumnoLiberacion extends React.Component{
                         <th className="table_lista">Alumno</th>
                         <th className="table_lista">Boleta</th>
                         <th className="table_lista">Programa Academico</th>
-                        <td className="table_lista">Estado de la Solicitud</td>
+                        <th className="table_lista">Estado de la Solicitud</th>
                     </tr>
                 </tbody>
                 <tbody>
