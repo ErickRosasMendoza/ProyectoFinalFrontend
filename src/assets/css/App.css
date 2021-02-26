@@ -295,7 +295,7 @@ div {
 #sidebar.dictamenCenter{
   margin-left: 420px;
   margin-top: -193px;
-  min-height: 190px;
+  min-height: 120px;
   height: auto;
   max-width: 24%;
 }
@@ -342,7 +342,7 @@ div {
 #sidebar.liberacionCenter{
   margin-left: 430px;
   margin-top: -862px;
-  min-height: 180px;
+  min-height: 120px;
   height: auto;
   max-width: 24%;
 }
@@ -363,7 +363,7 @@ div {
 #sidebar.bajaCenter{
   margin-left: 430px;
   margin-top: -932px;
-  min-height: 160px;
+  min-height: 120px;
   height: auto;
   max-width: 24%;
 }
@@ -384,7 +384,7 @@ div {
 #sidebar.servicioCenter{
   margin-left: 435px;
   margin-top: -282px;
-  min-height: 160px;
+  min-height: 90px;
   height: auto;
   max-width: 24%;
 }
@@ -712,6 +712,28 @@ input[type="radio"]{
   background: rgb(129, 6, 6);
   color: rgb(255, 255, 255);
 }
+#btn_deleteRegistro{
+  background: rgb(255, 0, 0);
+  color: rgb(255, 255, 255);
+  width: 80px;
+  height: 45px;
+  margin-left: 0px ;
+  margin-right: 10px;
+  font-size: 13px;
+  font-weight: 200;
+  text-shadow: none;
+  text-decoration: none;
+  box-shadow: 0px 0px 5px rgb(255, 255, 255);
+  border-radius: 10px;
+  transition: 300ms;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+#btn_deleteRegistro:hover{
+  background: rgb(129, 6, 6);
+  color: rgb(255, 255, 255);
+}
 #btn_downLoad{
   background: rgb(18, 224, 18);
   color: rgb(255, 255, 255);
@@ -793,7 +815,7 @@ ul li ul li:hover {background: #343a40;}
   color: white;
 }
 #state_processing{
-  background-color: yellow;
+  background-color: rgb(255, 115, 0);
   color: white;
 }
 #state_finished{

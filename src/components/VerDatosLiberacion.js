@@ -102,7 +102,7 @@ class VerDatosLiberacion extends React.Component{
             }else{
                 return(
                     <div className="center">
-                            <div id="sidebar" className="bajaCenter">
+                            <div id="sidebar" className="liberacionCenter">
                                 {(() => {  
                                 switch (this.state.liberacionExtemporanea.estado){
                                 case "NUEVO":
@@ -168,7 +168,7 @@ class VerDatosLiberacion extends React.Component{
             return(
                 <div className="center">
                         <div id="sidebar" className="liberacionCenter">
-                            <div className="text_login">
+                            <div>
                                 <strong>No tienes datos disponibles, registralos para empezar con tu documentación LIBERACION EXTEMPORANEA.</strong>
                             </div>
                         </div>          
