@@ -13,6 +13,7 @@ class AdminDictamenArchivos extends React.Component {
 
     state = {
         idAlumno: this.props.id,
+        statusArchivo: null,
         file: null,
         status: null,
         lista: {},
@@ -70,12 +71,15 @@ class AdminDictamenArchivos extends React.Component {
                                 idTramite: 1,
                                 idDoc: res.data + this.props.id,
                                 comentario: this.state.comentar
-                            }
+                            },
+                            statusArchivo: "true"
                         })
                         this.guardarLista();
                     });
         }else{
-            alert("SELECCIONA UN ARCHIVO PARA SUBIR")
+            this.setState({
+                statusArchivo: "false"
+            })
         }//Fin de else file
     }//Fin de funcion upLoad
     render() {
@@ -122,6 +126,17 @@ class AdminDictamenArchivos extends React.Component {
                                     <br/>
                                     <a className="text_login">Subir Archivo</a>
                                     <input type="file" name = "file" onChange={this.fileChange} />
+                                    {(() => {
+                                    switch(this.state.statusArchivo){   
+                                        case "false":
+                                        return (
+                                        <a className="warning_search">¡Seleccione un Archivo para Registrar!</a>
+                                        );
+                                        break;
+                                        default:
+                                            break;
+                                    }
+                                    })()} 
                                 </div>
                                 <div>
                                     <label htmlFor="comentario" className="text_login">Comentario Informativo</label>
@@ -141,6 +156,17 @@ class AdminDictamenArchivos extends React.Component {
                                 <br/>
                                 <a className="text_login">Subir Archivo</a>
                                     <input type="file" name = "file"  onChange={this.fileChange} />
+                                    {(() => {
+                                    switch(this.state.statusArchivo){   
+                                        case "false":
+                                        return (
+                                        <a className="warning_search">¡Seleccione un Archivo para Registrar!</a>
+                                        );
+                                        break;
+                                        default:
+                                            break;
+                                    }
+                                    })()} 
                                 </div>
                                 <div>
                                     <label htmlFor="comentario" className="text_login">Comentario Informativo</label>
@@ -158,10 +184,21 @@ class AdminDictamenArchivos extends React.Component {
                             <div>
                                 Cargando... Espere un momento
                                 <input type="file" name = "file" onChange={this.fileChange} />
+                                {(() => {
+                                    switch(this.state.statusArchivo){   
+                                        case "false":
+                                        return (
+                                        <a className="warning_search">¡Seleccione un Archivo para Registrar!</a>
+                                        );
+                                        break;
+                                        default:
+                                            break;
+                                    }
+                                    })()} 
                             </div>
                             <div>
                                 <label htmlFor="comentario" className="text_login">Comentario Informativo</label>
-                                <input type="text" className="input_login" name="comentario" placeholder="Ingrese un mensaje informativo" ref={this.comentarioRef} onClick={this.upLoad}/>
+                                <input type="text" className="input_login" name="comentario" placeholder="Ingrese un mensaje informativo" ref={this.comentarioRef} onClick={this.upLoad}/>    
                             </div>
                             <button className="btn"  onClick = {this.upLoad}>Subir Archivo</button> 
                         </div>
