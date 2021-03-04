@@ -29,7 +29,6 @@ class MisDatosAdmin extends React.Component{
         getAdmin = () => {
             axios.get(this.url +"admin/findIdUsuario/"+ this.state.idUsuario)
             .catch(error=>{
-                    alert("REGISTRA TUS DATOS PERSONALES")
                     window.location.href = '/DatosAdmin';
             })
             .then(res => {

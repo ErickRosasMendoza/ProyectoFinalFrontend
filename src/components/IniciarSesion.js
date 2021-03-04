@@ -82,10 +82,6 @@ class IniciarSesion extends React.Component {
         }
         else{
                 this.contraseñaRef2 = this.state.form.contraseña;
-                console.log(this.contraseñaRef2 + "contraseña denro de else password change contraseñaRef2");
-            
-            
-            
             this.setState({
                 usuario:{
                     email: this.email2Ref,
@@ -94,81 +90,43 @@ class IniciarSesion extends React.Component {
                     status: false
                 } 
             })
-          
         }
-            
-
-            
-       
-        
-        
-
-        
-  
- 
-       
     }
 
     login =   () => {
-
-          // this.emailChange();
         this.passwordChange();
-       // console.log(this.email2Ref + "email del EMAIL2REF")
         if(this.state.usuario.status != false |this.state.usuario.status != undefined){
             var validacion = validator.isEmail(this.email2Ref)
             if(validacion == false){
                 this.email2Ref = "false";
             }
- 
-
-
-        
-
-                console.log(this.state.form.contraseña + "CONTRASEÑA EN el usuario ");
-                console.log(this.state.form.email + "EMAIL DEL usuario");
-                console.log(this.state.form.status + "status DEL usuario");
-                
-            
-        
                 axios.post(this.url + "usuario/findEmail" , (this.state.form))
                 .then(response => {
                     this.setState({
                                        usuario: response.data
                                  })
-                                 
-                                 console.log(this.state.usuario.email + "response EMAIL")
-                                 console.log(this.state.usuario.contraseña+ "response CONTRASEÑA")
-                                 console.log(this.state.usuario.status + "response STATUS") 
-                                 console.log(this.state.usuario.tipoUsuario + "tipo usuario DEL usuario");
-                                 console.log(this.state.usuario.idUsuario + "ID usuario DEL usuario");
-                                 alert("depues de post")
                                  if(this.state.usuario.status ==true){ 
                                      if(this.state.usuario.tipoUsuario ==false)  {
-                                         window.location.href ="./MisDatosAlumno/";
+                                        cookies.set('idUsuario', this.state.usuario.idUsuario , { path: "/" })
+                                        cookies.set('email',this.state.usuario.email, { path: "/" })
+                                        cookies.set('tipoUsuario', "false", { path: "/" })
+                                        window.location.href ="./MisDatosAlumno";
                                      } 
                                      else{
                                         cookies.set('idUsuario', this.state.usuario.idUsuario , { path: "/" })
                                         cookies.set('email',this.state.usuario.email, { path: "/" })
-                                       
+                                        cookies.set('tipoUsuario', "true", { path: "/" })
                                         window.location.href = "./MisDatosAdmin";
                                     }
                                      }
-                                  
-                             
                                  return response.data;
 
                                  }) 
-                                  
             }    
-       
-
-                
         
         else{
             this.email2Ref = "false";
         }
-     
-    
 
     }     
         
@@ -231,18 +189,8 @@ class IniciarSesion extends React.Component {
                             
                              </div>
                              </div>
-                    
-                              
-                    
-                                
-            
-           
-         );
 
-            
-                           
-            
-     }
-        
-}
+         );     
+     }//Fin de Render
+}//Fin de Class Iniciar Sesion
 export default IniciarSesion;

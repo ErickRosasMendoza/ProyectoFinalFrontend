@@ -6,8 +6,6 @@ const cookies = new Cookies();
 
 class DirectorioAdmin extends Component{
 
-
-
     state = {
         email: cookies.get('email'),
     }
@@ -21,16 +19,11 @@ class DirectorioAdmin extends Component{
         window.location.href = '/IniciarSesion';
     }
 
-	componentWillMount = () => {
-        if(cookies.get('email') == null){
-            window.location.href = './IniciarSesion';
+	componentDidMount = () => {
+       if(cookies.get('tipoUsuario') !== "true"){
+            this.cerrarSesion();
+            window.location.href = '/IniciarSesion'
         }
-    }//Fin de funcion WillMount
-
-    componentDidMount = () => {
-        if(cookies.get('email') == null){
-            window.location.href = './IniciarSesion';
-        } 
     }//Fin de funcion DidMount
 
     render(){
