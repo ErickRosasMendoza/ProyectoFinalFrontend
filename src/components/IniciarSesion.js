@@ -92,7 +92,8 @@ class IniciarSesion extends React.Component {
                     contraseña: this.contraseñaRef2,
                     tipoUsuario: false,
                     status: false
-                } 
+                },
+               
             })
           
         }
@@ -133,7 +134,8 @@ class IniciarSesion extends React.Component {
                 axios.post(this.url + "usuario/findEmail" , (this.state.form))
                 .then(response => {
                     this.setState({
-                                       usuario: response.data
+                                       usuario: response.data,
+                                       
                                  })
                                  
                                  console.log(this.state.usuario.email + "response EMAIL")
@@ -141,15 +143,18 @@ class IniciarSesion extends React.Component {
                                  console.log(this.state.usuario.status + "response STATUS") 
                                  console.log(this.state.usuario.tipoUsuario + "tipo usuario DEL usuario");
                                  console.log(this.state.usuario.idUsuario + "ID usuario DEL usuario");
-                                 alert("depues de post")
+                                // alert("depues de post")
                                  if(this.state.usuario.status ==true){ 
                                      if(this.state.usuario.tipoUsuario ==false)  {
-                                         window.location.href ="./MisDatosAlumno/";
+                                        cookies.set('idUsuario', this.state.usuario.idUsuario , { path: "/" })
+                                        cookies.set('email',this.state.usuario.email, { path: "/" })
+                                        cookies.set('tipoUsuario', false, {path:"/"})
+                                         window.location.href ="./MisDatosAlumno";
                                      } 
                                      else{
                                         cookies.set('idUsuario', this.state.usuario.idUsuario , { path: "/" })
                                         cookies.set('email',this.state.usuario.email, { path: "/" })
-                                       
+                                        cookies.set('tipoUsuario', true,  {path:"/"})
                                         window.location.href = "./MisDatosAdmin";
                                     }
                                      }
@@ -166,6 +171,7 @@ class IniciarSesion extends React.Component {
         
         else{
             this.email2Ref = "false";
+        
         }
      
     

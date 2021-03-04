@@ -5,9 +5,12 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 class DirectorioAlumno extends Component{
+    
+
 
 	state = {
         email: cookies.get('email'),
+        tipoUsuario: cookies.get('tipoUsuario')
     }
 
 	cerrarSesion = () => {
@@ -21,15 +24,32 @@ class DirectorioAlumno extends Component{
 
     componentWillMount = () => {
         if(cookies.get('email') == null){
+
+           window.location.href = './IniciarSesion';
+        }else if(cookies.get('tipoUsuario') == true){
             window.location.href = './IniciarSesion';
         }
+        else {
+            console.log ( "hola join")
+        }
+
+        
     }//Fin de funcion WillMount
 
     componentDidMount = () => {
         if(cookies.get('email') == null){
+
+           window.location.href = './IniciarSesion';
+        }else if(cookies.get('tipoUsuario') == true){
             window.location.href = './IniciarSesion';
         }
-    }//Fin de funcion DidMount
+        else {
+            console.log ( "hola join")
+        }
+
+        
+    }
+//Fin de funcion DidMount
     
     render(){
             return(

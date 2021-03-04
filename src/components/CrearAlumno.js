@@ -151,7 +151,7 @@ class CrearAlumno extends React.Component {
        if(this.email2Ref != "false" ){
           if(this.email2Ref ){
     // 1 pesco el alert
-           alert("antes del validator" + this.email2Ref)
+           //alert("antes del validator" + this.email2Ref)
 
                  var validacion = validator.isEmail(this.email2Ref)
                  if(validacion == false){
@@ -169,14 +169,14 @@ class CrearAlumno extends React.Component {
                         console.log("CONTRASEÑA REF2" + this.contraseñaRef2)
                         console.log("CONTRASEÑA confirmarContraseña" + this.state.confirmarContraseña)
 //aqui ya es UNDEFINED el state usuario
-                        alert(this.state.usuario.email + "state usuario email")
+                       // alert(this.state.usuario.email + "state usuario email")
                         axios.get(this.url + "usuario/findByEmail/" + this.email2Ref)
                         .then(res =>{
                             this.setState({
                                 emailExistente: true,
                                
                             }); 
-                            alert("CACHANDO lA RES " + this.state.emailExistente)
+                           // alert("CACHANDO lA RES " + this.state.emailExistente)
                         })
                         .catch(error =>{
                             this.setState({
@@ -184,7 +184,7 @@ class CrearAlumno extends React.Component {
                                 emailExistente: false
                             })
                //aqui se hace el post             
-                            alert("CACHANDO EL ERREO" + this.state.emailExistente)
+                           // alert("CACHANDO EL ERREO" + this.state.emailExistente)
                         })
                         .then(res => {      
                                 
