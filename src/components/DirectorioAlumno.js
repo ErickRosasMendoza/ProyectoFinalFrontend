@@ -25,7 +25,8 @@ class DirectorioAlumno extends Component{
 
     componentDidMount = () => {
         console.log()
-        if(cookies.get('email') === null){
+        if(cookies.get('email') === null || cookies.get('email') === undefined){
+            this.cerrarSesion();
             window.location.href = '/IniciarSesion';
         }
     }//Fin de funcion DidMount

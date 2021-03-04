@@ -16,6 +16,7 @@ class DirectorioAdmin extends Component{
         cookies.remove('contraseña', {path:"/"});
         cookies.remove('tipoUsuario', {path:"/"});
         cookies.remove('idAdmin', {path:"/"});
+        cookies.remove('idAlumno', {path:"/"});
         window.location.href = '/IniciarSesion';
     }
 
