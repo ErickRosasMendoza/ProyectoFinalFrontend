@@ -6,16 +6,20 @@ import Cookies from 'universal-cookie';
 import Global from '../Global';
 import Slider from './Slider';
 import md5 from 'md5';
-
+import validator from 'validator';
 
 const cookies = new Cookies();
 
 class IniciarSesion extends React.Component {
 
     url = Global.url;
-
+    
+    contraseñaRef = React.createRef();
+    contraseñaRef2 = React.createRef();
+    contraseñaRef2 = false;
     emailRef = React.createRef();
-
+    email2Ref = React.createRef();
+    email2Ref = "true";
     state = {
         email: cookies.get('email'),
         idUsuario: cookies.get('idUsuario'),
@@ -24,128 +28,109 @@ class IniciarSesion extends React.Component {
         usuario:{},
         form: {
             idUsuario: "",
-            email: "",
-            contraseña: "",
+            email: false,
+            contraseña: false,
             tipoUsuario: ""
         }
     }
-    componentWillMount= () => {
-       this.setState(
-           {
-            email:cookies.get('email'),
-         
-           }
-       )
-    }
 
-    handleChange = async (e) => {
+
+    emailChange = async () => {
         await this.setState({
             form: { 
 
-                     ...this.state.form,
-                   [e.target.name]: e.target.value
+                 email:this.emailRef.current.value,
+                 contraseña:md5(this.contraseñaRef.current.value)
                 
                   
             }
         })
-        cookies.set('email', this.state.form.email, { path: "/" });
-        
-       console.log(cookies.get('email') + "cookies");
-        var psw = cookies.set('contraseña', this.state.form.contraseña, {path:"/"});
-        psw = md5(cookies.get('contraseña'));
-        console.log(psw + "cookies contraseña con md5");
-        cookies.set('contraseña', psw, {phat: "/"})
 
+        
+        if(this.state.form.email == undefined){
+            this.email2Ref =  this.email2Ref;
+        }
+        else{
+            this.email2Ref = this.state.form.email;
+        }
+        if(this.email2Ref) {
+           
+            console.log("dentro del if del ChangeEail")
+        }
+        else{
+                this.email2Ref = "false";
+        }
+        /*
+        var validacion = validator.isEmail(this.email2Ref)
+        if(validacion == false){
+            this.email2Ref = "false";
+        }
+        */
+    
     }
 
 
     passwordChange = () => {
         this.setState({
             form: {
-                contraseña: md5(this.state.form.contraseña)
-                
+                contraseña:this.contraseñaRef.current.value
             }
-           
         })
         
-       
+        if(this.state.form.contraseña == undefined){
+            this.contraseñaRef2 =  this.contraseñaRef2;
+        }
+        else{
+                this.contraseñaRef2 = this.state.form.contraseña;
+            this.setState({
+                usuario:{
+                    email: this.email2Ref,
+                    contraseña: this.contraseñaRef2,
+                    tipoUsuario: false,
+                    status: false
+                } 
+            })
+        }
     }
 
-    login = async (e) => {
+    login =   () => {
         this.passwordChange();
-        if(this.state.statusEmail =="true" || this.state.statusEmail == "false"){
-                  await axios.get(this.url + "usuario/findEmail/" + (this.state.form.email ||this.state.usuario.email))
-                        .then(response => {
-                            this.setState({
-                                               usuario: response.data
-                                         })
-                                         console.log(response.data.email + "response datasss")
-                                         console.log(this.state.form.email + "datos dentro del form")
-                                         console.log(this.state.usuario.email + "datos dentro de usuario")
-                                         
-                                           return response.data;
-                                        
-                                         })
-                               
-
-                           .then(response => {
-                           if (this.state.usuario.tipoUsuario == false) {
-                            console.log(cookies.get('contraseña') + " contraseña de las cookies")
-                            console.log( this.state.usuario.contraseña+ "contraseña de usuario")
-                                  if (cookies.get('contraseña') == this.state.usuario.contraseña) {
-                                  //  alert("dentro del segundo if del segundo then")
-                                   console.log(cookies.get('contraseña') + " email de las cookies")
-                                   console.log( this.state.usuario.contraseña+ "contraseña de usuario")
-                                  // alert("dentro del segundo if del segundo then")
-                                         cookies.set('idUsuario', response.idUsuario, { path: "/" })
-                                        cookies.set('email', response.email, { path: "/" })
-                                         window.location.href = "./MisDatosAlumno";
-                                          
-                                       }
-                                          else {
-                                                this.setState({
-                                                 statusPassword: "false"
-                                                 });
-                                                // alert("VERIFIQUE SU CONTRASEÑA");
-                                                // console.log(this.state.statusPassword);
-                                                }
-                            
-                                               console.log(response.data + "response data del segundo then")
-                             
-                            
-
-
+        if(this.state.usuario.status != false |this.state.usuario.status != undefined){
+            var validacion = validator.isEmail(this.email2Ref)
+            if(validacion == false){
+                this.email2Ref = "false";
+            }
+                axios.post(this.url + "usuario/findEmail" , (this.state.form))
+                .then(response => {
+                    this.setState({
+                                       usuario: response.data
+                                 })
+                                 if(this.state.usuario.status ==true){ 
+                                     if(this.state.usuario.tipoUsuario ==false)  {
+                                        cookies.set('idUsuario', this.state.usuario.idUsuario , { path: "/" })
+                                        cookies.set('email',this.state.usuario.email, { path: "/" })
+                                        cookies.set('tipoUsuario', "false", { path: "/" })
+                                        window.location.href ="./MisDatosAlumno";
+                                     } 
+                                     else{
+                                        cookies.set('idUsuario', this.state.usuario.idUsuario , { path: "/" })
+                                        cookies.set('email',this.state.usuario.email, { path: "/" })
+                                        cookies.set('tipoUsuario', "true", { path: "/" })
+                                        window.location.href = "./MisDatosAdmin";
                                     }
-                                    else if (this.state.usuario.tipoUsuario == true) {
-                                             if (cookies.get('contraseña') == this.state.usuario.contraseña){
-                                                cookies.set('idUsuario', response.idUsuario, { path: "/" })
-                                                cookies.set('email', response.email, { path: "/" })
-                                                 window.location.href = "./MisDatosAdmin";
-                                                   
-                                                  } 
-                                                   else {
-                                                        this.setState({
-                                                       statusPassword:"false"
-                                                          })
-                                                // alert("VERIFIQUE SU CONTRASEÑA");
-                                                 window.location.href = "./IniciarSesion"; 
-                                                    } 
-                                                }       
-                                          })  
-                           .catch(error => {
-               
-                                             this.setState({
-                                                        statusEmail:"false",
-                                                            });
-                                     //alert("VERIFIQUE SU CORREO");
-                                       //window.location.href = "./IniciarSesion";
-                             console.log(error + "status mail" + this.state.email +  " error en consulta");
-                             
-                            })  
-                             
-                        }             
+                                     }
+                                 return response.data;
+
+                                 }) 
+            }    
         
-   }
+        else{
+            this.email2Ref = "false";
+        }
+
+    }     
+        
+   
 
 
     render() {
@@ -172,10 +157,10 @@ class IniciarSesion extends React.Component {
                      <div className="input-border" >
                                  <br /> <br /> <br />
                      <label htmlFor="email" className="text_login">Correo electrónico </label>
-                     <input type="email" className="input_login" name="email"  onChange={this.handleChange} placeholder="Ingresa aquí tu correo electrónico" />
+                     <input type="email" className="input_login" name="email" ref={this.emailRef} onChange={this.emailChange} placeholder="Ingresa aquí tu correo electrónico" />
                      </div>
                      {(() => {
-                         switch(this.state.statusEmail){   
+                         switch (this.email2Ref){   
                             case "false":
                                 return (
                                     <a className="warning">¡correo electrónico no valido!</a>
@@ -187,11 +172,11 @@ class IniciarSesion extends React.Component {
 
                      <div>
                          <label htmlFor="contraseña" className="text_login">Contraseña</label>
-                            <input type="password" className="input_login" name="contraseña" autoComplete="on" placeholder="Ingresa aquí tu contraseña" onChange={this.handleChange} />
+                            <input type="password" className="input_login" name="contraseña" autoComplete="on"  ref={this.contraseñaRef} placeholder="Ingresa aquí tu contraseña" onChange={this.emailChange} />
                      </div>    
                      {(() => {
-                         switch (this.state.statusPassword) {
-                        case "false":
+                         switch (this.state.usuario.status) {
+                        case false:
                             return (
                                 <a className="warning">¡contraseña incorrecta!</a>
                             );
@@ -204,18 +189,8 @@ class IniciarSesion extends React.Component {
                             
                              </div>
                              </div>
-                    
-                              
-                    
-                                
-            
-           
-         );
 
-            
-                           
-            
-     }
-        
-}
+         );     
+     }//Fin de Render
+}//Fin de Class Iniciar Sesion
 export default IniciarSesion;

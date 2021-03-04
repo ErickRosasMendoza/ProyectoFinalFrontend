@@ -6,8 +6,12 @@ const cookies = new Cookies();
 
 class DirectorioAlumno extends Component{
 
+    usuraioRef=React.createRef();
+    usuraioRef=cookies.remove('tipoUsuario', {path:"/"});
+
 	state = {
         email: cookies.get('email'),
+        tipoUsuario: cookies.get('tipoUsuario')
     }
 
 	cerrarSesion = () => {
@@ -19,15 +23,10 @@ class DirectorioAlumno extends Component{
         window.location.href = '/IniciarSesion';
     }//Fin de Cerrar Sesion
 
-    componentWillMount = () => {
-        if(cookies.get('email') == null){
-            window.location.href = './IniciarSesion';
-        }
-    }//Fin de funcion WillMount
-
     componentDidMount = () => {
-        if(cookies.get('email') == null){
-            window.location.href = './IniciarSesion';
+        console.log()
+        if(cookies.get('email') === null){
+            window.location.href = '/IniciarSesion';
         }
     }//Fin de funcion DidMount
     
