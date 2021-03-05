@@ -25,13 +25,11 @@ class MisDatosAlumno extends React.Component{
     };
         componentWillMount() {
             this.getAlumno();
+            
         }
 
         getAlumno = () => {
-            axios.get(this.url +"alumno/findIdUsuario/"+ this.state.idUsuario)
-            .catch(error=>{
-                    window.location.href = '/DatosAlumno';
-            })
+            axios.get(this.url + "alumno/findIdUsuario/"+ this.state.idUsuario)
             .then(res => {
                     this.setState({
                         alumno: res.data,
@@ -39,6 +37,9 @@ class MisDatosAlumno extends React.Component{
                        });
                        cookies.set('idAlumno', this.state.alumno.idAlumno, {path:"/"})
             })
+            .catch(err=>{
+                window.location.href = '/DatosAlumno';
+        })
         }//Fin de funcion getAlumno()
 
         updateDatos=()=>{

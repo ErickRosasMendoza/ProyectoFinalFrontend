@@ -21,17 +21,16 @@ class DirectorioAdmin extends Component{
         window.location.href = '/IniciarSesion';
     }
 
-	componentWillMount = () => {
-        if(cookies.get('email') == null){
-            window.location.href = './IniciarSesion';
-        }
-    }//Fin de funcion WillMount
+
+/*
 
     componentDidMount = () => {
-        if(cookies.get('email') == null){
+     if(cookies.get('tipoUsuario') == false){
+            this.cerrarSesion();
             window.location.href = './IniciarSesion';
-        } 
-    }//Fin de funcion DidMount
+        }
+ 
+    }*/
 
     render(){
         return(

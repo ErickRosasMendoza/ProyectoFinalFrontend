@@ -14,7 +14,7 @@ const cookies = new Cookies();
 class CrearAlumno extends React.Component {
 
     url = Global.url;
-
+    
     tipoUsuarioRef = React.createRef();
     contraseñaRef = React.createRef();
     emailRef = React.createRef();

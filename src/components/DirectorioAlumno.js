@@ -22,33 +22,34 @@ class DirectorioAlumno extends Component{
         window.location.href = '/IniciarSesion';
     }//Fin de Cerrar Sesion
 
-    componentWillMount = () => {
-        if(cookies.get('email') == null){
-
-           window.location.href = './IniciarSesion';
-        }else if(cookies.get('tipoUsuario') == true){
-            window.location.href = './IniciarSesion';
-        }
-        else {
-            console.log ( "hola join")
-        }
-
-        
-    }//Fin de funcion WillMount
-
     componentDidMount = () => {
-        if(cookies.get('email') == null){
+        if(cookies.get('tipoUsuario') == true){
 
            window.location.href = './IniciarSesion';
-        }else if(cookies.get('tipoUsuario') == true){
-            window.location.href = './IniciarSesion';
         }
-        else {
-            console.log ( "hola join")
-        }
+        
+      
+        
 
         
     }
+    //Fin de funcion WillMount
+   
+
+   /* componentDidMount = () => {
+        
+        if(cookies.get('tipoUsuario') === false){
+            alert("jooin")
+            console.log ( "join")
+        }
+        else {
+            this.cerrarSesion();
+            window.location.href = './IniciarSesion';
+           
+        }   
+    }
+     
+    */
 //Fin de funcion DidMount
     
     render(){
