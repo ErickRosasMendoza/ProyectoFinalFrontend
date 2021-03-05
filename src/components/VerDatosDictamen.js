@@ -49,7 +49,7 @@ class VerDatosDictamen extends React.Component{
                               break;  
                         case "FINALIZADO":
                             return(
-                                <a id="state_finished">TERMINADO</a>   
+                                <a id="state_finished">FINALIZADO</a>   
                             );
                         case "RECHAZADO":
                             return(

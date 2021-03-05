@@ -23,6 +23,8 @@ class Liberacion extends React.Component {
     fechaInicioRef = React.createRef();
     fechaTerminoRef = React.createRef();
     telefonoRef = React.createRef();
+    liberacionRef = React.createRef();
+    liberacionRef = cookies.get('idAlumno');
 
 
     state = {
@@ -34,14 +36,46 @@ class Liberacion extends React.Component {
         statusFechaTermino: null,
         statusTelefono: null,
         liberacion: {},
-        status: "null"
+        status: "null",
+        estado: null
     };
+
+    componentWillMount = () =>{
+        this.searchLiberacion();
+    }
+
+    searchLiberacion = () => {
+        axios.get(this.url+"liberacionExtemporanea/findIdAlumno/"+this.liberacionRef)
+        .then(res =>{
+            this.setState({
+                liberacion: res.data
+            });
+        })
+        .then(res => {
+            this.setState({
+                estado: this.state.liberacion.estado,
+                liberacion: {
+                    egresado: null,
+                    semestre: null,
+                    registroSS: null,
+                    prestatario: null,
+                    programaSS: null,
+                    fechaInicio: null,
+                    fechaTermino: null,
+                    telefono: null,
+                    estado: "NUEVO",
+                    idAlumno: null,
+                    idLiberacion: null
+                }
+            });
+        });
+    }//Fin de search Liberacion
 
     changeState = () => {
         this.setState({
             liberacion: {
-                egresado: this.egresadoRef.current.value,
-                semestre: this.semestreRef.current.value,
+                egresado: "EGRESADO",
+                semestre: "True",
                 registroSS: this.registroSSRef.current.value,
                 prestatario: this.prestatarioRef.current.value.toUpperCase(),
                 programaSS: this.programaSSRef.current.value.toUpperCase(),
@@ -213,24 +247,28 @@ class Liberacion extends React.Component {
                                     }
                                 })()}
                             </div>
-                            <div>
-                                <label htmlFor="egresado" className="text_login">Eres egresado?</label>
-                                <select name="egresado" className="input_login" ref={this.egresadoRef} onChange={this.changeState}>
-                                    <option value="True">SI, SI SOY EGRESADO</option>
-                                    <option value="False">NO, NO SOY EGRESADO</option>
-                                    </select>
-                            </div>
-                            <div>
-                                <label htmlFor="semestre" className="text_login">Semestre</label>
-                                <select name="semestre" className="input_login" ref={this.semestreRef} onChange={this.changeState}>
-                                    <option value="SEPTIMO">SEPTIMO</option>
-                                    <option value="OCTAVO">OCTAVO</option>
-                                    <option value="NOVENO">NOVENO</option>
-                                    <option value="EGRESADO">SOY EGRESADO</option>
-                                    </select>
-                            </div>
                             <br/>
-                            <button className="btn" onClick = {this.saveLiberacion}>Aceptar</button>
+                            {(() => {
+                                switch(this.state.estado){   
+                                    case "NUEVO":
+                                    return (
+                                        <button className="btn" onClick = {this.saveLiberacion}>Aceptar</button>
+                                    );
+                                    break;
+                                    case undefined:
+                                    return (
+                                        <button className="btn" onClick = {this.saveLiberacion}>Aceptar</button>
+                                    );
+                                    break;
+                                    case null:
+                                    return (
+                                        <button className="btn" onClick = {this.saveLiberacion}>Aceptar</button>
+                                    );
+                                    break;
+                                    default:
+                                        break;
+                                }
+                            })()}
                           </div>
                           <SubirLiberacion/>
                           <VerDatosLiberacion/>
