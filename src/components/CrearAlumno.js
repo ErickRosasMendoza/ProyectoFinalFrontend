@@ -84,8 +84,6 @@ class CrearAlumno extends React.Component {
             emailExistente:false
         })
 
-        
-        console.log(validator.isEmail(this.state.usuario.email));
         if(this.state.usuario.email == undefined){
             this.email2Ref =  this.email2Ref;
         }
@@ -100,15 +98,6 @@ class CrearAlumno extends React.Component {
         else{
                 this.email2Ref = "false";
         }
-     /*   var validacion = validator.isEmail(this.state.usuario.email)
-        if(validacion == false){
-            this.email2Ref = "false";
-        }
-   */ 
-        
-        console.log(this.state.usuario.email + "-----------email de state de usuario");
-        console.log(this.email2Ref + "---email  de email2 ref ya no se perdio el valor");
-       
     }
 
 
@@ -125,66 +114,57 @@ class CrearAlumno extends React.Component {
         }
         else{
             this.contraseñaRef2 = this.state.usuario.contraseña;
-            console.log(" LA CONTRESEÑA REF 2 " + this.contraseñaRef2)
         }
-/*
-        if(this.contraseñaRef2.length <= 5 ||this.contraseñaRef2.length >= 10  ){
-          this.contraseñaRef2 = false;
-         
-        }
- */  
-        console.log(this.state.usuario.contraseña +" ___contraseña");
-        console.log(this.contraseñaRef2 + " ------contraseña de reff 2");
-       
-       
     }
 
     saveAlumno =  () => {
-       
-        
-        //this.changeEmail();
- //2 pesco changePassword
+
         this.changePassword();
-        //this.changeState();
-       
         
        if(this.email2Ref != "false" ){
           if(this.email2Ref ){
+<<<<<<< HEAD
     // 1 pesco el alert
            //alert("antes del validator" + this.email2Ref)
+=======
+>>>>>>> ce8df6cba750860e6a9b4e516317c268742f31ea
 
                  var validacion = validator.isEmail(this.email2Ref)
                  if(validacion == false){
                  this.email2Ref = "false";
                   }
             if(this.contraseñaRef2 ){
-                console.log("dentro del segundo if contraseñaREF2")
                 if(this.state.confirmarContraseña){
-        //3 sigue faltando el ultimo valor de contraseñaRef2
-                    console.log(this.contraseñaRef2 + "dentro del tercer if   CONFIRMACION DE CONTRASEÑA")
-                    console.log(  this.state.confirmarContraseña + "  CONFIRMACION DE CONTRASEÑA")
                     if(this.contraseñaRef2 == this.state.confirmarContraseña && this.state.contraseñaLength ==true){
+<<<<<<< HEAD
 
                         console.log("dentro de la COMPARACION DE CONTRASEÑAAS")
                         console.log("CONTRASEÑA REF2" + this.contraseñaRef2)
                         console.log("CONTRASEÑA confirmarContraseña" + this.state.confirmarContraseña)
 //aqui ya es UNDEFINED el state usuario
                        // alert(this.state.usuario.email + "state usuario email")
+=======
+>>>>>>> ce8df6cba750860e6a9b4e516317c268742f31ea
                         axios.get(this.url + "usuario/findByEmail/" + this.email2Ref)
                         .then(res =>{
                             this.setState({
                                 emailExistente: true,
                                
                             }); 
+<<<<<<< HEAD
                            // alert("CACHANDO lA RES " + this.state.emailExistente)
+=======
+>>>>>>> ce8df6cba750860e6a9b4e516317c268742f31ea
                         })
                         .catch(error =>{
                             this.setState({
-                   
                                 emailExistente: false
                             })
+<<<<<<< HEAD
                //aqui se hace el post             
                            // alert("CACHANDO EL ERREO" + this.state.emailExistente)
+=======
+>>>>>>> ce8df6cba750860e6a9b4e516317c268742f31ea
                         })
                         .then(res => {      
                                 
@@ -203,9 +183,7 @@ class CrearAlumno extends React.Component {
                                             status: "true"
                                         });
                                     });
-                                    
-                                
-                                
+    
                             }else{
                                 this.setState({
                                     emailExistente: true,
@@ -244,12 +222,6 @@ class CrearAlumno extends React.Component {
         }   //Fin de else email
     
     }   //fin de saveAlumno
-    
-   
-    
- 
-    
-
 
     render() {
         if(this.state.status === 'true'){

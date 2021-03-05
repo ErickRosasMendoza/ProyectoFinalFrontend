@@ -33,7 +33,7 @@ class VerDatosBaja extends React.Component{
         
     render() {
         if(this.state.status == 'success'){
-            if(this.state.tipoBaja.egresado == false){
+            if(this.state.tipoBaja.egresado == "false"){
                 return(
                     <div className="center">
                             <div id="sidebar" className="bajaCenter">
@@ -51,7 +51,7 @@ class VerDatosBaja extends React.Component{
                                 break;  
                             case "FINALIZADO":
                                 return(
-                                    <a id="state_finished">TERMINADO</a>   
+                                    <a id="state_finished">FINALIZADO</a>   
                                 );
                             case "RECHAZADO":
                                 return(
@@ -145,7 +145,7 @@ class VerDatosBaja extends React.Component{
                                     <strong>Tipo de Baja:</strong> {this.state.tipoBaja.tipoDeBaja}
                                 </div>
                                 <div >
-                                    <strong>Egresado</strong>
+                                    <strong>EGRESADO</strong>
                                 </div>
                                 <br/>
                                 <PdfBajaAlumno

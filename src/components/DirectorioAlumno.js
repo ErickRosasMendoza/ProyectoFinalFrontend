@@ -8,6 +8,9 @@ class DirectorioAlumno extends Component{
     
 
 
+    usuraioRef=React.createRef();
+    usuraioRef=cookies.remove('tipoUsuario', {path:"/"});
+
 	state = {
         email: cookies.get('email'),
         tipoUsuario: cookies.get('tipoUsuario')
@@ -23,6 +26,7 @@ class DirectorioAlumno extends Component{
     }//Fin de Cerrar Sesion
 
     componentDidMount = () => {
+<<<<<<< HEAD
         if(cookies.get('tipoUsuario') == true){
 
            window.location.href = './IniciarSesion';
@@ -41,6 +45,12 @@ class DirectorioAlumno extends Component{
         if(cookies.get('tipoUsuario') === false){
             alert("jooin")
             console.log ( "join")
+=======
+        console.log()
+        if(cookies.get('email') === null || cookies.get('email') === undefined){
+            this.cerrarSesion();
+            window.location.href = '/IniciarSesion';
+>>>>>>> ce8df6cba750860e6a9b4e516317c268742f31ea
         }
         else {
             this.cerrarSesion();

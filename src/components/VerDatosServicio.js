@@ -51,7 +51,7 @@ class VerDatosServicio extends React.Component{
                                     break;  
                                 case "FINALIZADO":
                                     return(
-                                        <a id="state_finished">TERMINADO</a>   
+                                        <a id="state_finished">FINALIZADO</a>   
                                     );
                                 case "RECHAZADO":
                                     return(
@@ -81,6 +81,30 @@ class VerDatosServicio extends React.Component{
                 return(
                     <div className="center">
                             <div id="sidebar" className="servicioCenter">
+                            {(() => {  
+                                switch (this.state.servicio.estado){
+                                case "NUEVO":
+                                    return (
+                                        <a id="state_new">NUEVO</a>
+                                    );
+                                break;
+                                case "PROCESANDO":
+                                    return(
+                                        <a id="state_processing">EN PROCESO</a>
+                                    ); 
+                                    break;  
+                                case "FINALIZADO":
+                                    return(
+                                        <a id="state_finished">FINALIZADO</a>   
+                                    );
+                                case "RECHAZADO":
+                                    return(
+                                        <a id="state_rejected">RECHAZADO</a>
+                                    )
+                                default: 
+                                    break;
+                                }
+                                })()}
                                 <div >
                                     <strong>Responsable Directo:</strong> {this.state.servicio.responsableDirecto}
                                 </div>

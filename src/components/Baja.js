@@ -25,7 +25,8 @@ class Baja extends React.Component {
     tipoDeBajaRef = React.createRef();
     horasRef = React.createRef();
     idAlumno = React.createRef();
-
+    bajaRef = React.createRef();
+    bajaRef = cookies.get('idAlumno');
 
     state = {
         idAlumno: cookies.get('idAlumno'),
@@ -35,8 +36,42 @@ class Baja extends React.Component {
         statusFechaInicio: null,
         statusFechaTermino: null,
         baja: {},
-        status: "null"
+        status: "null",
+        estado: null
     };
+
+
+    componentWillMount = () =>{
+        this.searchBaja();
+    }
+
+    searchBaja = () => {
+        axios.get(this.url+"solicitudBaja/findIdAlumno/"+this.bajaRef)
+        .then(res =>{
+            this.setState({
+                baja: res.data
+            });
+        })
+        .then(res => {
+            this.setState({
+                estado: this.state.baja.estado,
+                baja: {
+                    egresado: null,
+                    semestre: null,
+                    registroSS: null,
+                    prestatario: null,
+                    programaSS: null,
+                    fechaInicio: null,
+                    fechaTermino: null,
+                    tipoDeBaja: null,
+                    horas: null,
+                    estado: "NUEVO",
+                    idAlumno: null,
+                    idSolicitud: null
+                }
+            });
+        });
+    }//Fin de search Baja
 
     changeState = () => {
         if(this.tipoDeBajaRef.current.value !="BAJA CON RECONOCIMIENTO DE HORAS")
@@ -241,7 +276,27 @@ class Baja extends React.Component {
                                     </select>
                             </div>
                             <br/>
-                            <button className="btn" onClick = {this.saveBaja}>Aceptar</button>
+                            {(() => {
+                                switch(this.state.estado){
+                                    case "NUEVO":
+                                    return (
+                                        <button className="btn" onClick = {this.saveBaja}>Aceptar</button>
+                                    );
+                                    break;
+                                    case undefined:
+                                    return (
+                                        <button className="btn" onClick = {this.saveBaja}>Aceptar</button>
+                                    );
+                                    break;
+                                    case null:
+                                    return (
+                                        <button className="btn" onClick = {this.saveBaja}>Aceptar</button>
+                                    );
+                                    break;
+                                    default:
+                                        break;
+                                }
+                            })()}
                           </div>
                           <SubirBaja/>
                           <VerDatosBaja/>

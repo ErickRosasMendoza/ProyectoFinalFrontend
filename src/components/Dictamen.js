@@ -17,13 +17,20 @@ class Dictamen extends React.Component {
     url = Global.url;
 
     creditosRef = React.createRef();
+    dictamenRef = React.createRef();
+    dictamenRef = cookies.get('idAlumno');
 
     state = {
         idAlumno: cookies.get('idAlumno'),
         statusCreditos: null,
         dictamen: {},
-        status: "null"
+        status: "null",
+        estado: null
     };
+
+    componentWillMount = () =>{
+        this.searchDictamen();
+    }
 
     changeState = () => {
         this.setState({
@@ -36,6 +43,27 @@ class Dictamen extends React.Component {
             }
         });
     }
+
+    searchDictamen = () => {
+        axios.get(this.url+"dictamen/findIdAlumno/"+this.dictamenRef)
+        .then(res =>{
+            this.setState({
+                dictamen: res.data
+            });
+        })
+        .then(res => {
+            this.setState({
+                estado: this.state.dictamen.estado,
+                dictamen:{
+                    porcentajeCreditos: null,
+                    semestre: "SEPTIMO",
+                    estado: "NUEVO",
+                    idAlumno: null,
+                    idDictamen: null
+                }
+            });
+        });
+    }//Fin de search Dictamen
 
     saveDictamen = async (e) => {
         this.changeState();
@@ -82,7 +110,27 @@ class Dictamen extends React.Component {
                                 })()}       
                             </div>
                             <br/>
-                                <button className = "btn"  onClick = {this.saveDictamen}>Aceptar</button>
+                            {(() => {
+                                switch(this.state.estado){
+                                    case "NUEVO":
+                                    return (
+                                        <button className="btn" onClick = {this.saveDictamen}>Aceptar</button>
+                                    );
+                                    break;
+                                    case undefined:
+                                    return (
+                                        <button className="btn" onClick = {this.saveDictamen}>Aceptar</button>
+                                    );
+                                    break;
+                                    case null:
+                                    return (
+                                        <button className="btn" onClick = {this.saveDictamen}>Aceptar</button>
+                                    );
+                                    break;
+                                    default:
+                                        break;
+                                }
+                            })()}
                           </div>
                        <SubirDictamen/>
                        <VerDatosDictamen/>

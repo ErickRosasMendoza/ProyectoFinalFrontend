@@ -6,8 +6,6 @@ const cookies = new Cookies();
 
 class DirectorioAdmin extends Component{
 
-
-
     state = {
         email: cookies.get('email'),
     }
@@ -18,9 +16,11 @@ class DirectorioAdmin extends Component{
         cookies.remove('contraseña', {path:"/"});
         cookies.remove('tipoUsuario', {path:"/"});
         cookies.remove('idAdmin', {path:"/"});
+        cookies.remove('idAlumno', {path:"/"});
         window.location.href = '/IniciarSesion';
     }
 
+<<<<<<< HEAD
 
 /*
 
@@ -31,6 +31,14 @@ class DirectorioAdmin extends Component{
         }
  
     }*/
+=======
+	componentDidMount = () => {
+       if(cookies.get('tipoUsuario') !== "true"){
+            this.cerrarSesion();
+            window.location.href = '/IniciarSesion'
+        }
+    }//Fin de funcion DidMount
+>>>>>>> ce8df6cba750860e6a9b4e516317c268742f31ea
 
     render(){
         return(

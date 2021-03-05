@@ -326,14 +326,14 @@ div {
   max-width: 300px;
 }
 #sidebar.liberacionLeft{
-  min-height: 830px;
+  min-height: 780px;
   height: auto;
   margin-left: 15px;
   max-width: 40%;
 }
 #sidebar.liberacionRight{
   float: right;
-  margin-top: -862px;
+  margin-top: -812px;
   margin-right: 8px;
   min-height: 220px;
   height: auto;
@@ -341,20 +341,20 @@ div {
 }
 #sidebar.liberacionCenter{
   margin-left: 430px;
-  margin-top: -862px;
+  margin-top: -812px;
   min-height: 120px;
   height: auto;
   max-width: 24%;
 }
 #sidebar.bajaLeft{
-  min-height: 900px;
-  height: auto;
+  min-height: 1000px;
+  
   margin-left: 15px;
   max-width: 40%;
 }
 #sidebar.bajaRight{
   float: right;
-  margin-top: -932px;
+  margin-top: -1032px;
   margin-right: 8px;
   min-height: 220px;
   height: auto;
@@ -362,7 +362,7 @@ div {
 }
 #sidebar.bajaCenter{
   margin-left: 430px;
-  margin-top: -932px;
+  margin-top: -1032px;
   min-height: 120px;
   height: auto;
   max-width: 24%;
