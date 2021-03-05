@@ -16,14 +16,42 @@ class ServicioSocial extends React.Component {
     url = Global.url;
     semestreRef = React.createRef();
     responsableDirectoRef = React.createRef();
+    servicioRef = React.createRef();
+    servicioRef = cookies.get('idAlumno');
 
 
     state = {
         idAlumno: cookies.get('idAlumno'),
         statusResponsable: null,
         servicio: {},
-        status: "null"
+        status: "null",
+        estado: null
     };
+
+    componentWillMount = () =>{
+        this.searchServicio();
+    }
+
+    searchServicio = () => {
+        axios.get(this.url+"servicioSocial/findIdAlumno/"+this.servicioRef)
+        .then(res =>{
+            this.setState({
+                servicio: res.data
+            });
+        })
+        .then(res => {
+            this.setState({
+                estado: this.state.servicio.estado,
+                servicio: {
+                    semestre: null,
+                    responsableDirecto: null,
+                    estado: "NUEVO",
+                    idAlumno: null,
+                    idServicio: null
+                }
+            });
+        });
+    }//Fin de search Servicio
 
     changeState = () => {
         this.setState({
@@ -92,7 +120,27 @@ class ServicioSocial extends React.Component {
                                     </select>
                             </div>
                             <br/>
-                            <button className="btn" onClick = {this.saveServicio}>Aceptar</button>
+                            {(() => {
+                                switch(this.state.estado){   
+                                    case "NUEVO":
+                                    return (
+                                        <button className="btn" onClick = {this.saveServicio}>Aceptar</button>
+                                    );
+                                    break;
+                                    case undefined:
+                                    return (
+                                        <button className="btn" onClick = {this.saveServicio}>Aceptar</button>
+                                    );
+                                    break;
+                                    case null:
+                                    return (
+                                        <button className="btn" onClick = {this.saveServicio}>Aceptar</button>
+                                    );
+                                    break;
+                                    default:
+                                        break;
+                                }
+                            })()}
                           </div>
                           <SubirServicio/>
                           <VerDatosServicio/>

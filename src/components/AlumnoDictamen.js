@@ -104,7 +104,7 @@ class AlumnoDictamen extends React.Component{
                                 switch (this.state.dictamen.estado){
                                 case "NUEVO":
                                     return (
-                                        <a id="state_new">NUEVO</a>
+                                        <a id="state_new">NO REVISADO</a>
                                     );
                                 break;
                                 case "PROCESANDO":
@@ -114,7 +114,7 @@ class AlumnoDictamen extends React.Component{
                                     break;  
                                 case "FINALIZADO":
                                     return(
-                                        <a id="state_finished">TERMINADO</a>   
+                                        <a id="state_finished">FINALIZADO</a>   
                                     );
                                 case "RECHAZADO":
                                     return(
@@ -147,7 +147,7 @@ class AlumnoDictamen extends React.Component{
                                     return (
                                         <div className="center">
                                                 <select name="estado" ref={this.estadoRef} onChange={this.changeState}>
-                                                    <option value="NUEVO">NUEVO</option>
+                                                    <option value="NUEVO">NO REVISADO</option>
                                                     <option value="PROCESANDO">EN PROCESO</option>
                                                     <option value="FINALIZADO">FINALIZADO</option>
                                                     <option value="RECHAZADO">RECHAZADO</option>
