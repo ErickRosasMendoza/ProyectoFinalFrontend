@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Global from '../Global';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 class AlumnoDictamen extends React.Component{
 
@@ -26,7 +29,9 @@ class AlumnoDictamen extends React.Component{
                 idDictamen: this.state.dictamen.idDictamen,
                 semestre: "SEPTIMO",
                 porcentajeCreditos: this.state.dictamen.porcentajeCreditos,
-                estado: this.estadoRef.current.value
+                estado: this.estadoRef.current.value,
+                fechaRegistro: this.state.dictamen.fechaRegistro,
+                revisado: cookies.get('nombre'),
             }
         })
     }//Fin de ChangeState
@@ -92,7 +97,21 @@ class AlumnoDictamen extends React.Component{
                             <th className="table_lista">Alumno</th>
                             <th className="table_lista">Boleta</th>
                             <th className="table_lista">Programa Academico</th>
-                            <th className="table_lista">Estado de la Solicitud</th> 
+                            <th className="table_lista">Estado de la Solicitud</th>
+                            {(() => {  
+                                switch (this.state.dictamen.estado){
+                                case "NUEVO":
+                                    return(
+                                        null
+                                    ); 
+                                    break;  
+                                default:
+                                    return(
+                                        <th className="table_lista">Revisado por</th>
+                                    ); 
+                                    break;
+                                }
+                            })()} 
                         </tr>
                     </tbody>
                     <tbody>
@@ -124,14 +143,31 @@ class AlumnoDictamen extends React.Component{
                                     break;
                                 }
                                 })()}</td>
+                            {(() => {  
+                                switch (this.state.dictamen.estado){
+                                case "NUEVO":
+                                    return(
+                                        null
+                                    ); 
+                                    break;  
+                                default:
+                                    return(
+                                        <th className="table_lista">{this.state.dictamen.revisado}</th>
+                                    ); 
+                                    break;
+                                }
+                                })()}
                                 <td>
                                 <input type="checkbox" id="btn-modal"/>
-                                <label htmlFor="btn-modal" className="btn">MAS INFORMACIÓN</label>
+                                <label htmlFor="btn-modal" className="btn">INFORMACIÓN</label>
                                 <div className="modal">
                                 <div className="contenedor">
                                     <h1>Dictamen de 70%</h1>
                                     <label htmlFor="btn-modal">X</label>
                                     <div className="contenido">
+                                    <div>
+                                        <strong>Fecha de Registro:</strong> {this.state.dictamen.fechaRegistro}
+                                    </div>
                                     <div>
                                         <strong>Semestre:</strong> {this.state.dictamen.semestre}
                                     </div>

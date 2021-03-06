@@ -44,21 +44,39 @@ class VerDatosLiberacion extends React.Component{
                                 break;
                                 case "PROCESANDO":
                                     return(
+                                        <React.Fragment>
                                         <a id="state_processing">EN PROCESO</a>
+                                        <div>
+                                            <strong>Seguimiento:</strong> {this.state.liberacionExtemporanea.revisado}
+                                        </div>
+                                        </React.Fragment>
                                     ); 
                                     break;  
                                 case "FINALIZADO":
                                     return(
-                                        <a id="state_finished">FINALIZADO</a>   
+                                        <React.Fragment>
+                                        <a id="state_finished">TERMINADO</a>
+                                        <div>
+                                            <strong>Seguimiento:</strong> {this.state.liberacionExtemporanea.revisado}
+                                        </div>
+                                        </React.Fragment>   
                                     );
                                 case "RECHAZADO":
                                     return(
+                                        <React.Fragment>
                                         <a id="state_rejected">RECHAZADO</a>
+                                        <div>
+                                            <strong>Seguimiento:</strong> {this.state.liberacionExtemporanea.revisado}
+                                        </div>
+                                        </React.Fragment> 
                                     )
                                 default: 
                                     break;
                                 }
                                 })()}
+                                <div>
+                                    <strong>Fecha de Registro:</strong> {this.state.liberacionExtemporanea.fechaRegistro}
+                                </div>
                                 <div>
                                 <strong>Registro de Servicio Social:</strong> {this.state.liberacionExtemporanea.registroSS}
                                 </div>

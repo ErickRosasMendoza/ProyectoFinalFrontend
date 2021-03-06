@@ -37,6 +37,7 @@ class MisDatosAdmin extends React.Component{
                         status: 'success'
                        });
                        cookies.set('idAdmin', this.state.admin.idAdmin, {path:"/"})
+                       cookies.set('nombre', this.state.admin.nombre, {path:"/"})
             })
         }//Fin de funcion getAdmin()
         updateDatos=()=>{
