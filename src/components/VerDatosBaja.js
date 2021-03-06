@@ -46,21 +46,39 @@ class VerDatosBaja extends React.Component{
                             break;
                             case "PROCESANDO":
                                 return(
+                                    <React.Fragment>
                                     <a id="state_processing">EN PROCESO</a>
+                                    <div>
+                                        <strong>Seguimiento:</strong> {this.state.tipoBaja.revisado}
+                                    </div>
+                                    </React.Fragment>
                                 ); 
                                 break;  
                             case "FINALIZADO":
                                 return(
-                                    <a id="state_finished">FINALIZADO</a>   
+                                    <React.Fragment>
+                                    <a id="state_finished">TERMINADO</a>
+                                    <div>
+                                        <strong>Seguimiento:</strong> {this.state.tipoBaja.revisado}
+                                    </div>
+                                    </React.Fragment>   
                                 );
                             case "RECHAZADO":
                                 return(
+                                    <React.Fragment>
                                     <a id="state_rejected">RECHAZADO</a>
+                                    <div>
+                                        <strong>Seguimiento:</strong> {this.state.tipoBaja.revisado}
+                                    </div>
+                                    </React.Fragment> 
                                 )
                             default: 
                                 break;
                             }
                             })()}
+                            <div>
+                                <strong>Fecha de Registro:</strong> {this.state.tipoBaja.fechaRegistro}
+                            </div>
                                 <div >
                                     <strong>Registro de Servicio Social:</strong> {this.state.tipoBaja.registroSS}
                                 </div>
@@ -111,21 +129,39 @@ class VerDatosBaja extends React.Component{
                                 break;
                                 case "PROCESANDO":
                                     return(
+                                        <React.Fragment>
                                         <a id="state_processing">EN PROCESO</a>
+                                        <div>
+                                            <strong>Fecha de Registro:</strong> {this.state.tipoBaja.revisado}
+                                        </div>
+                                        </React.Fragment>
                                     ); 
                                     break;  
                                 case "FINALIZADO":
                                     return(
-                                        <a id="state_finished">TERMINADO</a>   
+                                        <React.Fragment>
+                                        <a id="state_finished">TERMINADO</a>
+                                        <div>
+                                            <strong>Fecha de Registro:</strong> {this.state.tipoBaja.revisado}
+                                        </div>
+                                        </React.Fragment>   
                                     );
                                 case "RECHAZADO":
                                     return(
+                                        <React.Fragment>
                                         <a id="state_rejected">RECHAZADO</a>
+                                        <div>
+                                            <strong>Fecha de Registro:</strong> {this.state.tipoBaja.revisado}
+                                        </div>
+                                        </React.Fragment> 
                                     )
                                 default: 
                                     break;
                                 }
                                 })()}
+                                <div>
+                                    <strong>Fecha de Registro:</strong> {this.state.tipoBaja.fechaRegistro}
+                                </div>
                                 <div>
                                     <strong>Registro de Servicio Social:</strong> {this.state.tipoBaja.registroSS}
                                 </div>

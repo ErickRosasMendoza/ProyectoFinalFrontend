@@ -19,6 +19,8 @@ class Dictamen extends React.Component {
     creditosRef = React.createRef();
     dictamenRef = React.createRef();
     dictamenRef = cookies.get('idAlumno');
+    fechaRegistroRef = React.createRef();
+    fechaRegistroRef = new Date().toLocaleDateString();
 
     state = {
         idAlumno: cookies.get('idAlumno'),
@@ -38,6 +40,8 @@ class Dictamen extends React.Component {
                 porcentajeCreditos: this.creditosRef.current.value,
                 semestre: "SEPTIMO",
                 estado: "NUEVO",
+                fechaRegistro: this.fechaRegistroRef,
+                revisado: null,
                 idAlumno: this.state.idAlumno,
                 idDictamen: this.state.idAlumno
             }
@@ -58,6 +62,8 @@ class Dictamen extends React.Component {
                     porcentajeCreditos: null,
                     semestre: "SEPTIMO",
                     estado: "NUEVO",
+                    fechaRegistro: null,
+                    revisado: null,
                     idAlumno: null,
                     idDictamen: null
                 }
