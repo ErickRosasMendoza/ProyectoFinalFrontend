@@ -26,31 +26,10 @@ class DirectorioAlumno extends Component{
     }//Fin de Cerrar Sesion
 
     componentDidMount = () => {
-<<<<<<< HEAD
-        if(cookies.get('tipoUsuario') == true){
-
-           window.location.href = './IniciarSesion';
-        }
-        
-      
-        
-
-        
-    }
-    //Fin de funcion WillMount
-   
-
-   /* componentDidMount = () => {
-        
-        if(cookies.get('tipoUsuario') === false){
-            alert("jooin")
-            console.log ( "join")
-=======
         console.log()
         if(cookies.get('email') === null || cookies.get('email') === undefined){
             this.cerrarSesion();
             window.location.href = '/IniciarSesion';
->>>>>>> ce8df6cba750860e6a9b4e516317c268742f31ea
         }
         else {
             this.cerrarSesion();
@@ -59,7 +38,7 @@ class DirectorioAlumno extends Component{
         }   
     }
      
-    */
+    
 //Fin de funcion DidMount
     
     render(){

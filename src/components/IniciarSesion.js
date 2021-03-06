@@ -107,36 +107,17 @@ class IniciarSesion extends React.Component {
                                        usuario: response.data,
                                        
                                  })
-<<<<<<< HEAD
-                                 
-                                 console.log(this.state.usuario.email + "response EMAIL")
-                                 console.log(this.state.usuario.contraseña+ "response CONTRASEÑA")
-                                 console.log(this.state.usuario.status + "response STATUS") 
-                                 console.log(this.state.usuario.tipoUsuario + "tipo usuario DEL usuario");
-                                 console.log(this.state.usuario.idUsuario + "ID usuario DEL usuario");
-                                // alert("depues de post")
-=======
->>>>>>> ce8df6cba750860e6a9b4e516317c268742f31ea
                                  if(this.state.usuario.status ==true){ 
                                      if(this.state.usuario.tipoUsuario ==false)  {
                                         cookies.set('idUsuario', this.state.usuario.idUsuario , { path: "/" })
                                         cookies.set('email',this.state.usuario.email, { path: "/" })
-<<<<<<< HEAD
-                                        cookies.set('tipoUsuario', false, {path:"/"})
-                                         window.location.href ="./MisDatosAlumno";
-=======
                                         cookies.set('tipoUsuario', "false", { path: "/" })
                                         window.location.href ="./MisDatosAlumno";
->>>>>>> ce8df6cba750860e6a9b4e516317c268742f31ea
                                      } 
                                      else{
                                         cookies.set('idUsuario', this.state.usuario.idUsuario , { path: "/" })
                                         cookies.set('email',this.state.usuario.email, { path: "/" })
-<<<<<<< HEAD
-                                        cookies.set('tipoUsuario', true,  {path:"/"})
-=======
                                         cookies.set('tipoUsuario', "true", { path: "/" })
->>>>>>> ce8df6cba750860e6a9b4e516317c268742f31ea
                                         window.location.href = "./MisDatosAdmin";
                                     }
                                      }

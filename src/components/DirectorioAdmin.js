@@ -20,25 +20,12 @@ class DirectorioAdmin extends Component{
         window.location.href = '/IniciarSesion';
     }
 
-<<<<<<< HEAD
-
-/*
-
-    componentDidMount = () => {
-     if(cookies.get('tipoUsuario') == false){
-            this.cerrarSesion();
-            window.location.href = './IniciarSesion';
-        }
- 
-    }*/
-=======
 	componentDidMount = () => {
        if(cookies.get('tipoUsuario') !== "true"){
             this.cerrarSesion();
             window.location.href = '/IniciarSesion'
         }
     }//Fin de funcion DidMount
->>>>>>> ce8df6cba750860e6a9b4e516317c268742f31ea
 
     render(){
         return(

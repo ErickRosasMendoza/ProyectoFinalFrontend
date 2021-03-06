@@ -123,11 +123,6 @@ class CrearAlumno extends React.Component {
         
        if(this.email2Ref != "false" ){
           if(this.email2Ref ){
-<<<<<<< HEAD
-    // 1 pesco el alert
-           //alert("antes del validator" + this.email2Ref)
-=======
->>>>>>> ce8df6cba750860e6a9b4e516317c268742f31ea
 
                  var validacion = validator.isEmail(this.email2Ref)
                  if(validacion == false){
@@ -136,35 +131,17 @@ class CrearAlumno extends React.Component {
             if(this.contraseñaRef2 ){
                 if(this.state.confirmarContraseña){
                     if(this.contraseñaRef2 == this.state.confirmarContraseña && this.state.contraseñaLength ==true){
-<<<<<<< HEAD
-
-                        console.log("dentro de la COMPARACION DE CONTRASEÑAAS")
-                        console.log("CONTRASEÑA REF2" + this.contraseñaRef2)
-                        console.log("CONTRASEÑA confirmarContraseña" + this.state.confirmarContraseña)
-//aqui ya es UNDEFINED el state usuario
-                       // alert(this.state.usuario.email + "state usuario email")
-=======
->>>>>>> ce8df6cba750860e6a9b4e516317c268742f31ea
                         axios.get(this.url + "usuario/findByEmail/" + this.email2Ref)
                         .then(res =>{
                             this.setState({
                                 emailExistente: true,
                                
                             }); 
-<<<<<<< HEAD
-                           // alert("CACHANDO lA RES " + this.state.emailExistente)
-=======
->>>>>>> ce8df6cba750860e6a9b4e516317c268742f31ea
                         })
                         .catch(error =>{
                             this.setState({
                                 emailExistente: false
                             })
-<<<<<<< HEAD
-               //aqui se hace el post             
-                           // alert("CACHANDO EL ERREO" + this.state.emailExistente)
-=======
->>>>>>> ce8df6cba750860e6a9b4e516317c268742f31ea
                         })
                         .then(res => {      
                                 
