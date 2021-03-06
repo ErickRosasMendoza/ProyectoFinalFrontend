@@ -43,22 +43,40 @@ class VerDatosDictamen extends React.Component{
                               );
                         break;
                         case "PROCESANDO":
-                            return(
-                                <a id="state_processing">EN PROCESO</a>
-                              ); 
-                              break;  
-                        case "FINALIZADO":
-                            return(
-                                <a id="state_finished">FINALIZADO</a>   
-                            );
-                        case "RECHAZADO":
-                            return(
-                                <a id="state_rejected">RECHAZADO</a>
-                            )
-                         default: 
-                            break;
-                        }
-                        })()}
+                                    return(
+                                        <React.Fragment>
+                                        <a id="state_processing">EN PROCESO</a>
+                                        <div>
+                                            <strong>Seguimiento:</strong> {this.state.dictamen.revisado}
+                                        </div>
+                                        </React.Fragment>
+                                    ); 
+                                    break;  
+                                case "FINALIZADO":
+                                    return(
+                                        <React.Fragment>
+                                        <a id="state_finished">TERMINADO</a>
+                                        <div>
+                                            <strong>Seguimiento:</strong> {this.state.dictamen.revisado}
+                                        </div>
+                                        </React.Fragment>   
+                                    );
+                                case "RECHAZADO":
+                                    return(
+                                        <React.Fragment>
+                                        <a id="state_rejected">RECHAZADO</a>
+                                        <div>
+                                            <strong>Seguimiento:</strong> {this.state.dictamen.revisado}
+                                        </div>
+                                        </React.Fragment> 
+                                    )
+                                default: 
+                                    break;
+                                }
+                                })()}
+                                <div>
+                                    <strong>Fecha de Registro:</strong> {this.state.dictamen.fechaRegistro}
+                                </div>
                             <div>
                                 <strong>Procentaje de creditos:</strong> {this.state.dictamen.porcentajeCreditos}%
                             </div>

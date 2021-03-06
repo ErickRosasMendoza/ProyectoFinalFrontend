@@ -117,6 +117,7 @@ render() {
                         <th className="table_lista">Semestre</th>
                         <th className="table_lista">Responsable Directo</th>
                         <th className="table_lista">Estado de la Solicitud</th>
+                        <th className="table_lista">Revisado por</th>
                     </tr>
                 </tbody>
                         {(() => {  
@@ -130,6 +131,7 @@ render() {
                                                 <td className="table_lista">{servicio.semestre}</td>
                                                 <td className="table_lista">{servicio.responsableDirecto}</td>
                                                 <td className="table_lista"><a id="state_new">NO REVISADO</a></td>
+                                                <td className="table_lista">NO REVISADO</td>
                                                 <td><Link to={'/DirectorioArchivosAlumno/' + servicio.idAlumno} id="btn_watch">Ver Archivos</Link></td>
                                             </tr>
                                         </tbody>
@@ -147,6 +149,7 @@ render() {
                                                 <td className="table_lista">{servicio.semestre}</td>
                                                 <td className="table_lista">{servicio.responsableDirecto}</td>
                                                 <td className="table_lista"><a id="state_processing">EN PROCESO</a></td>
+                                                <td className="table_lista">{servicio.revisado}</td>
                                                 <td><Link to={'/DirectorioArchivosAlumno/' + servicio.idAlumno} id="btn_watch">Ver Archivos</Link></td>
                                             </tr>
                                         </tbody>
@@ -164,6 +167,7 @@ render() {
                                                 <td className="table_lista">{servicio.semestre}</td>
                                                 <td className="table_lista">{servicio.responsableDirecto}</td>
                                                 <td className="table_lista"><a id="state_finished">FINALIZADO</a></td>
+                                                <td className="table_lista">{servicio.revisado}</td>
                                                 <td><Link to={'/DirectorioArchivosAlumno/' + servicio.idAlumno} id="btn_watch">Ver Archivos</Link></td>
                                             </tr>
                                         </tbody>
@@ -181,6 +185,7 @@ render() {
                                                 <td className="table_lista">{servicio.semestre}</td>
                                                 <td className="table_lista">{servicio.responsableDirecto}</td>
                                                 <td className="table_lista"><a id="state_rejected">RECHAZADO</a></td>
+                                                <td className="table_lista">{servicio.revisado}</td>
                                                 <td><Link to={'/DirectorioArchivosAlumno/' + servicio.idAlumno} id="btn_watch">Ver Archivos</Link></td>
                                             </tr>
                                         </tbody>
@@ -221,6 +226,20 @@ render() {
                                                             break;
                                                         }
                                                         })()}</td>
+                                                    {(() => {  
+                                                        switch (servicio.estado){
+                                                        case "NUEVO":
+                                                            return(
+                                                                <th className="table_lista">NO REVISADO</th>
+                                                            ); 
+                                                            break;  
+                                                        default:
+                                                            return(
+                                                                <th className="table_lista">{servicio.revisado}</th>
+                                                            ); 
+                                                            break;
+                                                        }
+                                                    })()}
                                                 <td><Link to={'/DirectorioArchivosAlumno/' + servicio.idAlumno} id="btn_watch">Ver Archivos</Link></td>
                                             </tr>
                                         </tbody>

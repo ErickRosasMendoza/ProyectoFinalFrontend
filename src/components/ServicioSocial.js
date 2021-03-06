@@ -18,6 +18,8 @@ class ServicioSocial extends React.Component {
     responsableDirectoRef = React.createRef();
     servicioRef = React.createRef();
     servicioRef = cookies.get('idAlumno');
+    fechaRegistroRef = React.createRef();
+    fechaRegistroRef = new Date().toLocaleDateString();
 
 
     state = {
@@ -46,6 +48,8 @@ class ServicioSocial extends React.Component {
                     semestre: null,
                     responsableDirecto: null,
                     estado: "NUEVO",
+                    fechaRegistro: null,
+                    revisado: null,
                     idAlumno: null,
                     idServicio: null
                 }
@@ -59,6 +63,8 @@ class ServicioSocial extends React.Component {
                 semestre: this.semestreRef.current.value,
                 responsableDirecto: this.responsableDirectoRef.current.value.toUpperCase(),
                 estado: "NUEVO",
+                fechaRegistro: this.fechaRegistroRef,
+                revisado: null,
                 idAlumno: this.state.idAlumno,
                 idServicio: this.state.idAlumno
             }

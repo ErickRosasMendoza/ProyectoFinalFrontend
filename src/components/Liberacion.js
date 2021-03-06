@@ -25,6 +25,8 @@ class Liberacion extends React.Component {
     telefonoRef = React.createRef();
     liberacionRef = React.createRef();
     liberacionRef = cookies.get('idAlumno');
+    fechaRegistroRef = React.createRef();
+    fechaRegistroRef = new Date().toLocaleDateString();
 
 
     state = {
@@ -64,6 +66,8 @@ class Liberacion extends React.Component {
                     fechaTermino: null,
                     telefono: null,
                     estado: "NUEVO",
+                    fechaRegistro: null,
+                    revisado: null,
                     idAlumno: null,
                     idLiberacion: null
                 }
@@ -74,8 +78,8 @@ class Liberacion extends React.Component {
     changeState = () => {
         this.setState({
             liberacion: {
-                egresado: "EGRESADO",
-                semestre: "True",
+                egresado: true,
+                semestre: "EGRESADO",
                 registroSS: this.registroSSRef.current.value,
                 prestatario: this.prestatarioRef.current.value.toUpperCase(),
                 programaSS: this.programaSSRef.current.value.toUpperCase(),
@@ -83,6 +87,8 @@ class Liberacion extends React.Component {
                 fechaTermino: this.fechaTerminoRef.current.value,
                 telefono: this.telefonoRef.current.value,
                 estado: "NUEVO",
+                fechaRegistro: this.fechaRegistroRef,
+                revisado: null,
                 idAlumno: this.state.idAlumno,
                 idLiberacion: this.state.idAlumno
             }

@@ -27,6 +27,8 @@ class Baja extends React.Component {
     idAlumno = React.createRef();
     bajaRef = React.createRef();
     bajaRef = cookies.get('idAlumno');
+    fechaRegistroRef = React.createRef();
+    fechaRegistroRef = new Date().toLocaleDateString();
 
     state = {
         idAlumno: cookies.get('idAlumno'),
@@ -66,6 +68,8 @@ class Baja extends React.Component {
                     tipoDeBaja: null,
                     horas: null,
                     estado: "NUEVO",
+                    fechaRegistro: null,
+                    revisado: null,
                     idAlumno: null,
                     idSolicitud: null
                 }
@@ -88,6 +92,8 @@ class Baja extends React.Component {
                     tipoDeBaja: this.tipoDeBajaRef.current.value,
                     horas: 0,
                     estado: "NUEVO",
+                    fechaRegistro: this.fechaRegistroRef,
+                    revisado: null,
                     idAlumno: this.state.idAlumno,
                     idSolicitud: this.state.idAlumno
                 }
@@ -105,6 +111,8 @@ class Baja extends React.Component {
                     tipoDeBaja: this.tipoDeBajaRef.current.value,
                     horas: this.horasRef.current.value,
                     estado: "NUEVO",
+                    fechaRegistro: this.fechaRegistroRef,
+                    revisado: null,
                     idAlumno: this.state.idAlumno,
                     idSolicitud: this.state.idAlumno
                 }

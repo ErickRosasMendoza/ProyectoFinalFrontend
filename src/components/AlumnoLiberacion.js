@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Global from '../Global';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 class AlumnoLiberacion extends React.Component{
 
@@ -31,7 +34,9 @@ class AlumnoLiberacion extends React.Component{
                 programaSS: this.state.liberacion.programaSS,
                 fechaInicio: this.state.liberacion.fechaInicio,
                 fechaTermino: this.state.liberacion.fechaTermino,
-                estado: this.estadoRef.current.value
+                estado: this.estadoRef.current.value,
+                fechaRegistro: this.state.liberacion.fechaRegistro,
+                revisado: cookies.get('nombre'),
             }
         })
     }//Fin de ChangeState
@@ -98,6 +103,20 @@ class AlumnoLiberacion extends React.Component{
                         <th className="table_lista">Boleta</th>
                         <th className="table_lista">Programa Academico</th>
                         <th className="table_lista">Estado de la Solicitud</th>
+                        {(() => {  
+                                switch (this.state.liberacion.estado){
+                                case "NUEVO":
+                                    return(
+                                        null
+                                    ); 
+                                    break;  
+                                default:
+                                    return(
+                                        <th className="table_lista">Revisado por</th>
+                                    ); 
+                                    break;
+                                }
+                        })()}
                     </tr>
                 </tbody>
                 <tbody>
@@ -129,14 +148,31 @@ class AlumnoLiberacion extends React.Component{
                                     break;
                                 }
                                 })()}</td>
+                            {(() => {  
+                                switch (this.state.liberacion.estado){
+                                case "NUEVO":
+                                    return(
+                                        null
+                                    ); 
+                                    break;  
+                                default:
+                                    return(
+                                        <th className="table_lista">{this.state.liberacion.revisado}</th>
+                                    ); 
+                                    break;
+                                }
+                                })()}
                                 <td>
                                 <input type="checkbox" id="btn-modal"/>
-                                <label htmlFor="btn-modal" className="btn">MAS INFORMACIÓN</label>
+                                <label htmlFor="btn-modal" className="btn">INFORMACIÓN</label>
                                 <div className="modal">
                                 <div className="contenedor">
                                     <h1>Liberación Extemporanea</h1>
                                     <label htmlFor="btn-modal">X</label>
                                     <div className="contenido">
+                                    <div>
+                                        <strong>Fecha de Registro:</strong> {this.state.liberacion.fechaRegistro}
+                                    </div>
                                     <div>
                                         <strong>Semestre:</strong> {this.state.liberacion.semestre}
                                     </div>

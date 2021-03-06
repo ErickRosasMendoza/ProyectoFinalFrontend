@@ -53,11 +53,12 @@ class PdfDictamenAlumno extends React.Component{
 
     jspdfGenerator=()=>{
         var doc = new jsPDF('p', 'pt');
-        var fecha = new Date().toDateString();
+        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        var fecha = new Date().toLocaleDateString(undefined, options);
 
         doc.text( 200,125, "SOLICITUD DE DICTAMEN" );
         doc.setFontSize(11);
-        doc.text(370,210,"Ciudad de México " + fecha)
+        doc.text(320,210,"Ciudad de México " + fecha)
         doc.setFontSize(12);
         doc.text(50,250, "COMISIÓN DE SERVICIO SOCIAL");
         doc.text(50,265, "PRESENTE.");
