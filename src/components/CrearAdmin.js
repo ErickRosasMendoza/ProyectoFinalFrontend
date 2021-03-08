@@ -39,7 +39,7 @@ class CrearAdmin extends React.Component {
     saveAdmin = () =>{
         if(this.state.usuario.email && this.state.usuario.email !== null && this.state.usuario.email !== undefined){
             if(this.state.contraseña && this.state.contraseña !== null && this.state.contraseña !== undefined){
-                axios.get(this.url+"usuario/findEmail/"+this.state.usuario.email)
+                axios.get(this.url+"usuario/findByEmail/"+this.state.usuario.email)
                 .then(res => {
                     this.setState({
                         emailExistente: "true",

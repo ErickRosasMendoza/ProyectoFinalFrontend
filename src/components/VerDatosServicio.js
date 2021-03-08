@@ -80,18 +80,15 @@ class VerDatosServicio extends React.Component{
                                     <strong>Fecha de Registro:</strong> {this.state.servicio.fechaRegistro}
                                 </div>
                                 <div >
-                                    <strong>Responsable Directo:</strong> {this.state.servicio.responsableDirecto}
-                                </div>
-                                <div >
                                     <strong>Semestre:</strong> {this.state.servicio.semestre}
                                 </div>
                                 <br/>
-                                <PdfServicioAlumno
+                            {/*    <PdfServicioAlumno
                                     responsable={this.state.servicio.responsableDirecto}
                                     redaccion={" alumno del " + this.state.servicio.semestre + " semestre "}
                                     email={this.state.email}
                                     idAlumno={this.state.idAlumno}
-                                    />
+                                    />*/}
                             </div>          
                 </div>
                 );
@@ -142,18 +139,15 @@ class VerDatosServicio extends React.Component{
                                     <strong>Fecha de Registro:</strong> {this.state.servicio.fechaRegistro}
                                 </div>
                                 <div >
-                                    <strong>Responsable Directo:</strong> {this.state.servicio.responsableDirecto}
-                                </div>
-                                <div >
                                     <strong>Soy Egresado</strong>
                                 </div>
                                 <br/>
-                                <PdfServicioAlumno
+                                {/*<PdfServicioAlumno
                                     responsable={this.state.servicio.responsableDirecto}
                                     redaccion={" egresado "}
                                     email={this.state.email}
                                     idAlumno={this.state.idAlumno}
-                                    />
+                                    />*/}
                             </div>
                 </div>
                 );

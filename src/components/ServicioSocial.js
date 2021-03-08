@@ -61,7 +61,7 @@ class ServicioSocial extends React.Component {
         this.setState({
             servicio: {
                 semestre: this.semestreRef.current.value,
-                responsableDirecto: this.responsableDirectoRef.current.value.toUpperCase(),
+                responsableDirecto: "",
                 estado: "NUEVO",
                 fechaRegistro: this.fechaRegistroRef,
                 revisado: null,
@@ -74,7 +74,6 @@ class ServicioSocial extends React.Component {
 
     saveServicio = (e) => {
         this.changeState();
-        if(this.state.servicio.responsableDirecto && this.state.servicio.responsableDirecto != null && this.state.servicio.responsableDirecto != undefined){
             axios.post(this.url + "servicioSocial/save", this.state.servicio)
             .then(res => {
                 this.setState(
@@ -83,13 +82,6 @@ class ServicioSocial extends React.Component {
                     }
                 );
             })
-        }else{
-            this.setState(
-                {
-                    statusResponsable: "false"
-                }
-            );
-        }//Fin de else Responsable Directo
     }//Fin de funcion saveServicio()
     render() {
         if(this.state.status == 'true'){
@@ -101,21 +93,6 @@ class ServicioSocial extends React.Component {
             <HeaderDEyAE/>
                 <DirectorioAlumno />
                         <div id="sidebar" className="servicioLeft">
-                            <div>
-                                <label htmlFor="responsable" className="text_login">Responsable Directo</label>
-                                <input type="text" className="input_login" name="responsable" placeholder="Ingresa el nombre de tu responsable directo" ref={this.responsableDirectoRef} onChange={this.changeState}/>
-                                {(() => {
-                                    switch(this.state.statusResponsable){   
-                                        case "false":
-                                        return (
-                                        <a className="warning">¡Ingresa el nombre de tu Responsable Directo!</a>
-                                        );
-                                        break;
-                                        default:
-                                            break;
-                                    }
-                                })()}      
-                            </div>
                             <div>
                                 <label htmlFor="semestre" className="text_login">Semestre</label>
                                 <select name="semestre" className="input_login" ref={this.semestreRef} onChange={this.changeState}>
@@ -130,17 +107,17 @@ class ServicioSocial extends React.Component {
                                 switch(this.state.estado){   
                                     case "NUEVO":
                                     return (
-                                        <button className="btn" onClick = {this.saveServicio}>Aceptar</button>
+                                        <button className="btn" onClick = {this.saveServicio}>Solicitar Constancia de Creditos</button>
                                     );
                                     break;
                                     case undefined:
                                     return (
-                                        <button className="btn" onClick = {this.saveServicio}>Aceptar</button>
+                                        <button className="btn" onClick = {this.saveServicio}>Solicitar Constancia de Creditos</button>
                                     );
                                     break;
                                     case null:
                                     return (
-                                        <button className="btn" onClick = {this.saveServicio}>Aceptar</button>
+                                        <button className="btn" onClick = {this.saveServicio}>Solicitar Constancia de Creditos</button>
                                     );
                                     break;
                                     default:

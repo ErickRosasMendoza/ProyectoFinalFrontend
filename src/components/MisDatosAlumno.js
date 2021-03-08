@@ -38,6 +38,7 @@ class MisDatosAlumno extends React.Component{
                         status: 'success'
                        });
                        cookies.set('idAlumno', this.state.alumno.idAlumno, {path:"/"})
+                       cookies.set('boleta', this.state.alumno.boleta, {path:"/"})
             })
         }//Fin de funcion getAlumno()
 
