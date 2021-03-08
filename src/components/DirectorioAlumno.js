@@ -22,6 +22,7 @@ class DirectorioAlumno extends Component{
         cookies.remove('contraseña', {path:"/"});
         cookies.remove('tipoUsuario', {path:"/"});
         cookies.remove('idAlumno', {path:"/"});
+        cookies.remove('boleta', {path:"/"});
         window.location.href = '/IniciarSesion';
     }//Fin de Cerrar Sesion
 

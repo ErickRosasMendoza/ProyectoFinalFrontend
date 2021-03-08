@@ -16,6 +16,7 @@ class AlumnoBaja extends React.Component{
         idAlumno: this.props.id,
         tipoBaja: {},
         alumno: {},
+        usuario: {},
         cambioEstado: {},
         statusTipoBaja: null,
         statusEstado: null,
@@ -64,6 +65,15 @@ class AlumnoBaja extends React.Component{
         });
         } );   
     }//Fin de getTipoBaja()
+
+    getEmail = () => {
+        axios.get(this.url +"usuario/find/"+ this.state.alumno.idUsuario)
+        .then(response => {
+        this.setState({
+            usuario: response.data,
+            });
+        });   
+    }//Fin de getEmail()
 
     deleteTipoBaja = () => {
         axios.delete(this.url+"solicitudBaja/delete/"+this.props.id)
@@ -163,7 +173,7 @@ class AlumnoBaja extends React.Component{
                                 })()}
                                 <td>
                                 <input type="checkbox" id="btn-modal"/>
-                                <label htmlFor="btn-modal" className="btn">INFORMACIÓN</label>
+                                <label htmlFor="btn-modal" className="btn" onClick={this.getEmail}>INFORMACIÓN</label>
                                 <div className="modal">
                                 <div className="contenedor">
                                     <h1>Baja de Servicio Social</h1>
@@ -194,7 +204,10 @@ class AlumnoBaja extends React.Component{
                                         <strong>Fecha de Inicio:</strong> {this.state.tipoBaja.fechaInicio}
                                     </div>
                                     <div>
-                                        <strong>Fehcta de Término:</strong> {this.state.tipoBaja.fechaTermino}
+                                        <strong>Fecha de Término:</strong> {this.state.tipoBaja.fechaTermino}
+                                    </div>
+                                    <div>
+                                        <strong>Correo electrónico:</strong> {this.state.usuario.email}
                                     </div>
                                     <br/>
                                     <button className="btn_join" onClick={this.estado}>Cambiar Estado</button>

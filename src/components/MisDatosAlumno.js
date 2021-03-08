@@ -36,6 +36,7 @@ class MisDatosAlumno extends React.Component{
                         status: 'success'
                        });
                        cookies.set('idAlumno', this.state.alumno.idAlumno, {path:"/"})
+                       cookies.set('boleta', this.state.alumno.boleta, {path:"/"})
             })
             .catch(err=>{
                 window.location.href = '/DatosAlumno';

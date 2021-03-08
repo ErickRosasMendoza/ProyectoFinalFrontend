@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Global from '../Global';
 import Cookies from 'universal-cookie';
-
+import md5 from 'md5';
 const cookies = new Cookies();
 
 class AlumnoDictamen extends React.Component{
@@ -17,6 +17,7 @@ class AlumnoDictamen extends React.Component{
         idAlumno: this.props.id,
         dictamen: {},
         alumno: {},
+        usuario:{},
         statusDictamen: null,
         cambioEstado: {},
         statusEstado: null,
@@ -60,6 +61,15 @@ class AlumnoDictamen extends React.Component{
         });
         } );   
     }//Fin de getDictamen()
+
+    getEmail = () => {
+        axios.get(this.url +"usuario/find/"+ this.state.alumno.idUsuario)
+        .then(response => {
+        this.setState({
+            usuario: response.data,
+            });
+        });   
+    }//Fin de getEmail()
 
     deleteDictamen = () => {
         axios.delete(this.url+"dictamen/delete/"+this.props.id)
@@ -159,7 +169,7 @@ class AlumnoDictamen extends React.Component{
                                 })()}
                                 <td>
                                 <input type="checkbox" id="btn-modal"/>
-                                <label htmlFor="btn-modal" className="btn">INFORMACIÓN</label>
+                                <label htmlFor="btn-modal" className="btn" onClick={this.getEmail}>INFORMACIÓN</label>
                                 <div className="modal">
                                 <div className="contenedor">
                                     <h1>Dictamen de 70%</h1>
@@ -173,6 +183,9 @@ class AlumnoDictamen extends React.Component{
                                     </div>
                                     <div>
                                         <strong>Porcentaje de Creditos:</strong> {this.state.dictamen.porcentajeCreditos}%
+                                    </div>
+                                    <div>
+                                        <strong>Correo electrónico:</strong> {this.state.usuario.email}
                                     </div>
                                     <br/>
                                     <button className="btn_join" onClick={this.estado}>Cambiar Estado</button>

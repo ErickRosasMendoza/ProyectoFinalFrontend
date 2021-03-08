@@ -29,7 +29,9 @@ class DatosAlumno extends React.Component {
         statusApellidoPaterno: null,
         statusApellidoMaterno: null,
         usuario: {},
-        status: "null"
+        status: "null",
+        existe: false,
+        boletaExiste: null
     };
 
     changeState = () => {
@@ -48,34 +50,78 @@ class DatosAlumno extends React.Component {
 
     saveAlumno = async (e) => {
         this.changeState();
-        if(this.state.alumno.nombre && this.state.alumno.nombre != null && this.state.alumno.nombre != undefined){
-            if(this.state.alumno.apellidoPaterno && this.state.alumno.apellidoPaterno != null && this.state.alumno.apellidoPaterno != undefined){
-                if(this.state.alumno.apellidoMaterno && this.state.alumno.apellidoMaterno != null && this.state.alumno.apellidoMaterno != undefined){
-                    if(this.state.alumno.boleta && this.state.alumno.boleta != null && this.state.alumno.boleta != undefined){
-                        await axios.post(this.url+"alumno/save", this.state.alumno)
-                        .then(res => {
+        if(this.state.alumno.nombre && this.state.alumno.nombre !== null && this.state.alumno.nombre !== undefined){
+            if(this.state.alumno.apellidoPaterno && this.state.alumno.apellidoPaterno !== null && this.state.alumno.apellidoPaterno !== undefined){
+                if(this.state.alumno.apellidoMaterno && this.state.alumno.apellidoMaterno !== null && this.state.alumno.apellidoMaterno !== undefined){
+                    if(this.state.alumno.boleta.length === 10){
+                        axios.get(this.url+"alumno/findBoleta/"+this.state.alumno.boleta)
+                        .then(res =>{
                             this.setState({
-                                status: "true"
-                                });
+                                statusBoleta: "true",
+                                statusApellidoMaterno: "true",
+                                statusApellidoPaterno: "true",
+                                statusNombre: "true",
+                                boletaExiste: "true",
+                                existe: "true"
                             });
+                        })
+                        .catch(error =>{
+                            this.setState({
+                                boletaExiste: "false"
+                            });
+                        })
+                        .then(res =>{
+                            if(this.state.boletaExiste === "false"){
+                                if(this.state.existe === false){
+                                    axios.post(this.url+"alumno/save", this.state.alumno)
+                                     .then(res => {
+                                         this.setState({
+                                             status: "true"
+                                             });
+                                         });
+                                 }else{
+                                     this.setState({
+                                         statusBoleta: "true",
+                                         statusApellidoMaterno: "true",
+                                         statusApellidoPaterno: "true",
+                                         statusNombre: "true",
+                                         boletaExiste: "true",
+                                         existe: false
+                                     });
+                                }
+                            }else{
+                                this.setState({
+                                    boletaExiste: "true",
+                                    existe: false
+                                });
+                            }
+                                
+                        })
                     }else{
                         this.setState(
                             {
-                                statusBoleta: "false"
+                                statusBoleta: "false",
+                                statusApellidoMaterno: "true",
+                                statusApellidoPaterno: "true",
+                                statusNombre: "true",
+                                boletaExiste: "false"
                             }
                         );
                     }//Fin de else Boleta
                 }else{
                     this.setState(
                         {
-                            statusApellidoMaterno: "false"
+                            statusApellidoMaterno: "false",
+                            statusApellidoPaterno: "true",
+                            statusNombre: "true"
                         }
                     );
                 }//Fin de else Apellido Materno
             }else{
                 this.setState(
                     {
-                        statusApellidoPaterno: "false"
+                        statusApellidoPaterno: "false",
+                        statusNombre: "true"
                     }
                 );
             }//Fin de else Apellido Paterno
@@ -89,13 +135,13 @@ class DatosAlumno extends React.Component {
     }//Fin de funcion saveAlumno()
 
     componentDidMount= () =>{
-        if(cookies.get('email') == null || cookies.get('email') == undefined){
+        if(cookies.get('email') === null || cookies.get('email') === undefined){
             window.location.href = './IniciarSesion';
         }
     }
 
     componentWillMount=()=>{
-        if(cookies.get('email') == null || cookies.get('email') == undefined){
+        if(cookies.get('email') === null || cookies.get('email') === undefined){
             window.location.href = './IniciarSesion';
         }
     }
@@ -163,7 +209,18 @@ class DatosAlumno extends React.Component {
                                 switch(this.state.statusBoleta){   
                                     case "false":
                                     return (
-                                    <a className="warning">¡Ingresa tu boleta con solo números!</a>
+                                    <a className="warning">¡Ingresa tu boleta con solo números (10)!</a>
+                                    );
+                                    break;
+                                    default:
+                                        break;
+                                }
+                            })()}
+                        {(() => {
+                                switch(this.state.boletaExiste){   
+                                    case "true":
+                                    return (
+                                    <a className="warning">¡Esta boleta ya fue registrada!</a>
                                     );
                                     break;
                                     default:
