@@ -137,28 +137,38 @@ class Baja extends React.Component {
                         }else{
                             this.setState(
                                 {
-                                    statusFechaTermino: "false"
+                                    statusFechaTermino: "false",
+                                    statusFechaInicio: "true",
+                                    statusPrestatario: "true",
+                                    statusPrograma: "true",
+                                    statusRegistro: "true"
                                 }
                             );
                         }//Fin de else Fecha Termino
                     }else{
                         this.setState(
                             {
-                                statusFechaInicio: "false"
+                                statusFechaInicio: "false",
+                                statusPrestatario: "true",
+                                statusPrograma: "true",
+                                statusRegistro: "true"
                             }
                         );
                     }//Fin de else Fecha Inicio
                 }else{
                     this.setState(
                         {
-                            statusPrestatario: "false"
+                            statusPrestatario: "false",
+                            statusPrograma: "true",
+                        statusRegistro: "true"
                         }
                     );
                 }//Fin de else Prestatario
             }else{
                 this.setState(
                     {
-                        statusPrograma: "false"
+                        statusPrograma: "false",
+                        statusRegistro: "true"
                     }
                 );
             }//Fin de else Programa de SS

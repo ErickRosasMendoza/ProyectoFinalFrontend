@@ -16,6 +16,7 @@ class AlumnoServicio extends React.Component{
         idAlumno: this.props.id,
         servicio: {},
         alumno: {},
+        usuario: {},
         statusServicio: null,
         cambioEstado: {},
         statusEstado: null,
@@ -37,7 +38,7 @@ class AlumnoServicio extends React.Component{
 
      componentWillMount=()=> {
             this.getServicio();
-            this.getAlumno();            
+            this.getAlumno();           
         }
 
         getAlumno = () => {
@@ -47,7 +48,7 @@ class AlumnoServicio extends React.Component{
                 alumno: response.data,
                 status: 'success'
             });
-            } );   
+            });   
         }//Fin de getAlumno()
     
     getServicio = () => {
@@ -57,8 +58,17 @@ class AlumnoServicio extends React.Component{
             servicio: response.data,
             statusServicio: 'success'
         });
-        } );   
+    });   
     }//Fin de getservicio()
+
+    getEmail = () => {
+        axios.get(this.url +"usuario/find/"+ this.state.alumno.idUsuario)
+        .then(response => {
+        this.setState({
+            usuario: response.data,
+            });
+        });   
+    }//Fin de getEmail()
 
     deleteServicio = () => {
         axios.delete(this.url+"servicioSocial/delete/"+this.props.id)
@@ -158,7 +168,7 @@ class AlumnoServicio extends React.Component{
                                 })()}
                                 <td>
                                 <input type="checkbox" id="btn-modal"/>
-                                <label htmlFor="btn-modal" className="btn">INFORMACIÓN</label>
+                                <label htmlFor="btn-modal" className="btn" onClick={this.getEmail}>INFORMACIÓN</label>
                                 <div className="modal">
                                 <div className="contenedor">
                                     <h1>Servicio Social</h1>
@@ -171,7 +181,7 @@ class AlumnoServicio extends React.Component{
                                         <strong>Semestre:</strong> {this.state.servicio.semestre}
                                     </div>
                                     <div>
-                                        <strong>Responsable Directo:</strong> {this.state.servicio.responsableDirecto}
+                                        <strong>Correo electónico:</strong> {this.state.usuario.email}
                                     </div>
                                     <br/>
                                     <button className="btn_join" onClick={this.estado}>Cambiar Estado</button>

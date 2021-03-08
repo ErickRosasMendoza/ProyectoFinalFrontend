@@ -16,6 +16,7 @@ class AlumnoLiberacion extends React.Component{
         idAlumno: this.props.id,
         liberacion: {},
         alumno: {},
+        usuario: {},
         statusLiberacion: null,
         cambioEstado: {},
         statusEstado: null,
@@ -65,6 +66,15 @@ class AlumnoLiberacion extends React.Component{
         });
         } );   
     }//Fin de getLiberacion()
+
+    getEmail = () => {
+        axios.get(this.url +"usuario/find/"+ this.state.alumno.idUsuario)
+        .then(response => {
+        this.setState({
+            usuario: response.data,
+            });
+        });   
+    }//Fin de getEmail()
 
     deleteLiberacion = () => {
         axios.delete(this.url+"liberacionExtemporanea/delete/"+this.props.id)
@@ -164,7 +174,7 @@ class AlumnoLiberacion extends React.Component{
                                 })()}
                                 <td>
                                 <input type="checkbox" id="btn-modal"/>
-                                <label htmlFor="btn-modal" className="btn">INFORMACIÓN</label>
+                                <label htmlFor="btn-modal" className="btn" onClick={this.getEmail}>INFORMACIÓN</label>
                                 <div className="modal">
                                 <div className="contenedor">
                                     <h1>Liberación Extemporanea</h1>
@@ -193,6 +203,9 @@ class AlumnoLiberacion extends React.Component{
                                     </div>
                                     <div>
                                         <strong>Número Telefónico:</strong> {this.state.liberacion.telefono}
+                                    </div>
+                                    <div>
+                                        <strong>Correo electrónico:</strong> {this.state.usuario.email}
                                     </div>
                                     <br/>
                                     <button className="btn_join" onClick={this.estado}>Cambiar Estado</button>
