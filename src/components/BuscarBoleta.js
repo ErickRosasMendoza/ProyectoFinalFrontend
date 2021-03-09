@@ -4,6 +4,7 @@ import Global from '../Global';
 import DirectorioAdmin from './DirectorioAdmin';
 import { Link } from 'react-router-dom';
 import { Alert } from 'bootstrap';
+import RecuperacionContraseña from './RecuperacionContraseña';
 
 class BuscarBoleta extends React.Component {
 
@@ -88,6 +89,10 @@ class BuscarBoleta extends React.Component {
                                             <td className="table_lista">{this.state.alumno.boleta}</td>
                                             <td className="table_lista">{this.state.alumno.programaAcademico}</td>
                                             <td><Link to={'/DirectorioArchivosAlumno/' + this.state.alumno.idAlumno} id="btn_watch">Ver Archivos</Link></td>
+                                            <td>
+                                                <RecuperacionContraseña
+                                                id={this.state.alumno.idUsuario}/>
+                                            </td>
                                         </tr>
                                     </tbody>
                 </div>
