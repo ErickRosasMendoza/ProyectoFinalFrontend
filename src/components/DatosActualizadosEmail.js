@@ -26,7 +26,7 @@ class DatosActualizadosEmail extends React.Component {
         statusEmail: null,
         statusContraseña: null,
         statusNuevoEmail: null,
-        statusNuevaContraseña: null,
+        statusNuevaContraseña: "false",
         statusNuevaConfirmar: null,
         usuario: {},
         email: "",
@@ -57,16 +57,16 @@ class DatosActualizadosEmail extends React.Component {
     update = () => {
         this.changeState();
         if(this.state.email && this.state.email !== null && this.state.email !== undefined){
-            if(this.state.contraseña && this.state.contraseña !== null && this.state.contraseña !== undefined){
-                axios.get(this.url+"usuario/findEmail/"+this.state.email)
+            if(this.state.contraseña.length >= 5){
+                axios.get(this.url+"usuario/findByEmail/"+this.state.email)
                 .then(res => {
                     if(this.state.email === this.state.emailPerfil){
                         if(this.state.usuario.email && this.state.usuario.email !== null && this.state.usuario.email !== undefined){
                             if(this.state.usuario.email === this.state.email){
-                                if(this.state.nuevaContraseña && this.state.nuevaContraseña !== null && this.state.nuevaContraseña !== undefined){
+                                if(this.state.nuevaContraseña.length >= 5 && this.state.nuevaContraseña.length<= 10){
                                     if(this.state.confirmarNuevaContraseña && this.state.confirmarNuevaContraseña !== null && this.state.confirmarNuevaContraseña !== undefined){
                                         if(this.state.usuario.contraseña === this.state.confirmarContraseña){
-                                            axios.patch(this.url+"usuario/save", this.state.usuario)
+                                            axios.patch(this.url+"usuario/update", this.state.usuario)
                                             .then(res => {
                                                 this.setState({
                                                     status: "true"
@@ -99,10 +99,10 @@ class DatosActualizadosEmail extends React.Component {
                                     });
                                 }//Fin de Nueva contraseña
                             }else{
-                                if(this.state.nuevaContraseña && this.state.nuevaContraseña !== null && this.state.nuevaContraseña !== undefined){
+                                if(this.state.nuevaContraseña.length >= 5 && this.state.nuevaContraseña.length<= 10){
                                     if(this.state.confirmarNuevaContraseña && this.state.confirmarNuevaContraseña !== null && this.state.confirmarNuevaContraseña !== undefined){
                                         if(this.state.usuario.contraseña === this.state.confirmarContraseña){
-                                            axios.get(this.url+"usuario/findEmail/" + this.state.usuario.email)
+                                            axios.get(this.url+"usuario/findByEmail/" + this.state.usuario.email)
                                             .then(res =>{
                                                 this.setState({
                                                     ayuda: "false",
@@ -123,7 +123,7 @@ class DatosActualizadosEmail extends React.Component {
                                             .then(res => {
                                                 if(this.state.emailExistente == "false"){
                                                     if(this.state.ayuda == "false"){
-                                                        axios.post(this.url+"usuario/save", this.state.usuario)
+                                                        axios.patch(this.url+"usuario/update", this.state.usuario)
                                                         .then(res =>{
                                                             this.setState({
                                                                 status: "true"
@@ -268,7 +268,7 @@ class DatosActualizadosEmail extends React.Component {
                             switch(this.state.statusNuevaContraseña){   
                             case "false":
                                 return (
-                                <a className="warning">¡Ingresa una Nueva Contraseña!</a>
+                                <a className="warning">¡Ingresa una Nueva Contraseña entre 6 y 10 caracteres!</a>
                                 );
                                 break;
                             default:
