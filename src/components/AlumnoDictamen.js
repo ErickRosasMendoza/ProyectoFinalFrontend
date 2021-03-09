@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Global from '../Global';
 import Cookies from 'universal-cookie';
-import md5 from 'md5';
+
 const cookies = new Cookies();
 
 class AlumnoDictamen extends React.Component{

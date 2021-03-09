@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Global from '../Global';
 import DirectorioAdmin from './DirectorioAdmin';
+import RecuperacionContraseña from './RecuperacionContraseña';
 
 class BuscarAlumno extends React.Component {
 
@@ -102,6 +103,10 @@ class BuscarAlumno extends React.Component {
                                             <td className="table_lista">{alumno.boleta}</td>
                                             <td className="table_lista">{alumno.programaAcademico}</td>
                                             <td><Link to={'/DirectorioArchivosAlumno/' + alumno.idAlumno} id="btn_watch">Ver Archivos</Link></td>
+                                            <td>
+                                                <RecuperacionContraseña
+                                                id={alumno.idUsuario}/>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 )}
