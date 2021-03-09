@@ -21,7 +21,8 @@ class CrearAdmin extends React.Component {
         status: "null",
         searchEmail: {},
         emailExistente: null,
-        ayuda: "false"
+        ayuda: "false",
+        statusLongitud: "false"
     };
 
     changeState = () => {
@@ -39,23 +40,26 @@ class CrearAdmin extends React.Component {
     saveAdmin = () =>{
         if(this.state.usuario.email && this.state.usuario.email !== null && this.state.usuario.email !== undefined){
             if(this.state.contraseña && this.state.contraseña !== null && this.state.contraseña !== undefined){
-                axios.get(this.url+"usuario/findByEmail/"+this.state.usuario.email)
+                if(this.state.contraseña.length >= 5 && this.state.contraseña.length<= 10){
+                    axios.get(this.url+"usuario/findByEmail/"+this.state.usuario.email)
                 .then(res => {
                     this.setState({
                         emailExistente: "true",
                         ayuda: "true",
                         statusContraseña: "true",
-                        statusEmail: "true"
+                        statusEmail: "true",
+                        statusLongitud: "true"
                     });
                 })
                 .catch(error =>{
                     this.setState({
-                        emailExistente: "false"
+                        emailExistente: "false",
+                        statusLongitud: "true"
                     });
                 })
                 .then(res => {
-                    if(this.state.emailExistente == "false"){
-                        if(this.state.ayuda == "false"){
+                    if(this.state.emailExistente === "false"){
+                        if(this.state.ayuda === "false"){
                             axios.post(this.url+"usuario/save", this.state.usuario)
                             .then(res =>{
                                 this.setState({
@@ -77,6 +81,13 @@ class CrearAdmin extends React.Component {
                         });
                     }//Fin de else Email Existe
                 })
+                }else{
+                    this.setState({
+                        statusContraseña: "true",
+                        statusEmail: "true",
+                        statusLongitud: "false"
+                    });
+                }//Finde else longitud de contraseña
             }else{
                 this.setState({
                     statusContraseña: "false",
@@ -92,7 +103,7 @@ class CrearAdmin extends React.Component {
     }//Fin de saveAdmin
 
     render() {
-        if(this.state.status == 'true'){
+        if(this.state.status === 'true'){
             return <Redirect to = "/Lista"></Redirect>
         }
 
@@ -140,6 +151,17 @@ class CrearAdmin extends React.Component {
                                             break;
                                     }   
                                     })()}
+                                    {(() => {
+                                        switch(this.state.statusLongitud){   
+                                            case "false":
+                                            return (
+                                            <a className="warning">¡Ingresa una contraseña entre 6 y 10 caracteres!</a>
+                                            );
+                                           
+                                            default:
+                                                break;
+                                        }   
+                                        })()}
                             </div>
                             <br/>
                             <button className = "btn" onClick = {this.saveAdmin}>Aceptar</button>
