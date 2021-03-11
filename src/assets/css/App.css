@@ -811,11 +811,7 @@ ul li ul li {
 ul li ul li a {display:block !important;} 
 ul li ul li:hover {background: #343a40;}
 #state_new{
-<<<<<<< HEAD
-  background-color: rgb(255, 115, 0);
-=======
   background-color:rgb(255, 115, 0);
->>>>>>> b7618060de31e50dbfe5255008011cd124d288a8
   color: white;
   width: 80px;
   height: 45px;
